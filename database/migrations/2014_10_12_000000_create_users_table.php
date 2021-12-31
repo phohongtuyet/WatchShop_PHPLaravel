@@ -5,6 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CreateUsersTable extends Migration
 {
@@ -32,9 +33,9 @@ class CreateUsersTable extends Migration
         NguoiDung::create([
 			'name' => 'Administrator',
 			'username' => 'admin',
-			'email' => 'phohongtuyetse@gmail',
-            'email_verified_at' => date('Y-m-d H:i:s'),
-			'password' => '$2a$12$7x/9C1NRD56pOY4QvjHMreqU3B8TfXn.0FcNT5IvNxw5Xhg5SqACm', // 123456789
+			'email' => 'watchshopphp@gmail.com',
+            'email_verified_at' => Carbon::now(),
+			'password' => '$2a$12$dzmr1o.tIG6HHLt9uMNrE.zgL1D1lQ.t3lgToCAcyVHeQKthKrWKG', // 123456789.$
 			'role' => 'admin',
 		]);
     }

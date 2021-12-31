@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.apadminp')
 @section('title', 'Chất liệu đồng hồ')
 @section('content')
  <div class="card">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 <div class="card">
     <div class="card-header">Cập nhật tài khoản</div>
