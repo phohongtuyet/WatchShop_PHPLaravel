@@ -51,7 +51,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary"><i class="fal fa-user-plus"></i> Thêm người dùng</button>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Thêm người dùng</button>
             </form>
         </div>
     </div>

@@ -1,12 +1,15 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\NguoiDung;
+use App\Models\BaiViet;
+use App\Models\BinhLuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Imports\NguoiDungImport;
 use App\Exports\NguoiDungExport;
 use Excel;
+use Auth;
 
 class NguoiDungController extends Controller
 {
@@ -115,6 +118,33 @@ class NguoiDungController extends Controller
 
     public function getInfo()
     {
-        return view('admin.nguoidung.info');
+        $baiviet = BaiViet::where('nguoidung_id',Auth::user()->id)->get();
+       
+            foreach($baiviet as $value)
+            {
+                $binhluan = BinhLuan::where('baiviet_id', $value->id)->get();
+            }
+            return view('admin.nguoidung.info',compact('baiviet','binhluan'));
+        
+
     }
+
+    public function postSuaInfo(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:nguoidung,email,' . $request->id],
+            'password' => ['confirmed'],
+        ]);
+        
+        $orm = NguoiDung::find($request->id);
+        $orm->name = $request->name;
+        $orm->username = Str::before($request->email, '@');
+        $orm->email = $request->email;
+        if(!empty($request->password)) $orm->password = Hash::make($request->password);
+        $orm->save();
+        
+        return redirect()->route('admin.nguoidung')->with('status', 'Cập nhật  thành công');
+    }
+    
 }

@@ -193,6 +193,7 @@
 													
 						</ul>
 					</li> 
+					@if(Auth::user()->role == 'admin')
 					<li class="nav-item">
 						<a href="#" class="nav-link">
 							<i class="nav-icon fas fa-users"></i>
@@ -229,6 +230,8 @@
 							</li>													
 						</ul>
 					</li>  
+					@endif
+
 					<li class="nav-item">
 						<a href="#" class="nav-link">
 							<i class="nav-icon fas fa-shopping-cart"></i>

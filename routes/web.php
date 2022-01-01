@@ -211,6 +211,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::get('/nguoidung/xoa/{id}', [NguoiDungController::class, 'getXoa'])->name('nguoidung.xoa')->middleware('admin');
     Route::post('/nguoidung/nhap', [NguoiDungController::class, 'postNhap'])->name('nguoidung.nhap')->middleware('admin');
     Route::post('/nguoidung/xuat', [NguoiDungController::class, 'postXuat'])->name('nguoidung.xuat')->middleware('admin');
-    Route::get('/nguoidung/info/{name}', [NguoiDungController::class, 'getInfo'])->name('nguoidung.info')->middleware('admin');
+    Route::get('/nguoidung/info/{name}', [NguoiDungController::class, 'getInfo'])->name('nguoidung.info')->middleware('nhanvien');
+    Route::post('/nguoidung/sua/{id}', [NguoiDungController::class, 'postSuaInfo'])->name('nguoidung.sua.info')->middleware('nhanvien');
+
 
 });
