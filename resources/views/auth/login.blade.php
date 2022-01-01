@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label" for="email">Tài khoản</label>
-                                    <input type="text" class="form-control{{ ($errors->has('email') || $errors->has('username')) ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}" placeholder="Email hoặc Tên đăng nhập" required />
+                                    <input type="text" class="form-control{{ ($errors->has('email') || $errors->has('username')) ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}" placeholder="Email hoặc Tên đăng nhập"  />
                                     @if ($errors->has('email') || $errors->has('username'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="password">Mật khẩu</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required />
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"  />
                                     @error('password')
                                         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                     @enderror

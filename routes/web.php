@@ -104,8 +104,11 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+
+
 // Trang quản trị
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
+
     // Trang chủ quản trị
     Route::get('/home', [AdminController::class, 'getHome'])->name('home');
     Route::get('/403', [AdminController::class, 'getForbidden'])->name('forbidden');
@@ -154,7 +157,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::get('/sanpham/xoa/{id}', [SanPhamController::class, 'getXoa'])->name('sanpham.xoa')->middleware('nhanvien');
     Route::post('/sanpham/nhap', [SanPhamController::class, 'postNhap'])->name('sanpham.nhap')->middleware('nhanvien');
     Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat'])->name('sanpham.xuat')->middleware('nhanvien');
-    
+    Route::get('/sanpham/OnOffHienThi/{id}', [SanPhamController::class, 'getOnOffHienThi'])->name('sanpham.OnOffHienThi')->middleware('nhanvien');
+
     // Quản lý bài viết
     Route::get('/baiviet', [BaiVietController::class, 'getDanhSach'])->name('baiviet')->middleware('nhanvien');
     Route::get('/baiviet/them', [BaiVietController::class, 'getThem'])->name('baiviet.them')->middleware('nhanvien');

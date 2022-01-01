@@ -14,14 +14,14 @@
 	<!-- Theme style -->
 	<link rel="stylesheet" href="{{ asset('public/admin/dist/css/adminlte.min.css')}}">
     
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+  
+	
+	
 </head>
 	
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
-	<!-- Navbar -->
 		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
@@ -73,9 +73,7 @@
 				</li>
 			</ul>
 		</nav>
-		<!-- /.navbar -->
 
-		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="{{route('admin.home')}}" class="brand-link" >
@@ -283,60 +281,81 @@
 			</div>
 		</aside>
 
-	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
-		<!-- Content Header (Page header) -->
-		<div class="content-header">
-		<div class="container-fluid">
-			<div class="row mb-2">
-			<div class="col-sm-6">
-				<h1 class="m-0">@yield('title')</h1>
-			</div><!-- /.col -->
-			<div class="col-sm-6">
-				<ol class="breadcrumb float-sm-right">
-				<li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
-				<li class="breadcrumb-item active">@yield('title')
-				</li>
-				</ol>
-			</div><!-- /.col -->
-			</div><!-- /.row -->
-		</div><!-- /.container-fluid -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">@yield('title')</h1>
+				</div><!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
+					<li class="breadcrumb-item active">@yield('title')
+					</li>
+					</ol>
+				</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content-header -->
+
+			<!-- Main content -->
+			@yield('content')
+			<!-- /.content -->
 		</div>
-		<!-- /.content-header -->
 
-		<!-- Main content -->
-		@yield('content')
-		<!-- /.content -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+
+		<footer class="main-footer">
+			<strong>Copyright &copy; 2021</strong>  
+		</footer>
 	</div>
-	<!-- /.content-wrapper -->
 
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-		<!-- Control sidebar content goes here -->
-	</aside>
-	<!-- /.control-sidebar -->
 
-	<!-- Main Footer -->
-	<footer class="main-footer">
-		<strong>Copyright &copy; 2021  
-	</footer>
-	</div>
-	<!-- ./wrapper -->
+	<!-- jQuery -->
+	<script src="{{ asset('public/admin/plugins/jquery/jquery.min.js')}}"></script>
+	<!-- Bootstrap -->
+	<script src="{{ asset('public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+	<!-- AdminLTE -->
+	<script src="{{ asset('public/admin/dist/js/adminlte.js')}}"></script>
 
-	<!-- REQUIRED SCRIPTS -->
+	<!-- OPTIONAL SCRIPTS -->
+	<script src="{{ asset('public/admin/plugins/chart.js/Chart.min.js')}}"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="{{ asset('public/admin/dist/js/demo.js')}}"></script>
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+	<script src="{{ asset('public/admin/dist/js/pages/dashboard3.js')}}"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 
-		<!-- jQuery -->
-		<script src="{{ asset('public/admin/plugins/jquery/jquery.min.js')}}"></script>
-		<!-- Bootstrap -->
-		<script src="{{ asset('public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-		<!-- AdminLTE -->
-		<script src="{{ asset('public/admin/dist/js/adminlte.js')}}"></script>
+	<script>
+		
+		$(document).ready(function() {
+			$("#table_id").DataTable({
+				"aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tất cả"]],
+				"iDisplayLength": 25,
+				"oLanguage": {
+					"sLengthMenu": "Hiện _MENU_ dòng",
+					"oPaginate": {
+						"sFirst": "<i class='fas fa-step-backward'></i>",
+						"sLast": "<i class='fas fa-step-forward'></i>",
+						"sNext": "<i class='fas fa-chevron-right'></i>",
+						"sPrevious": "<i class='fas fa-chevron-left'></i>"
+					},
+					"sEmptyTable": "Không có dữ liệu",
+					"sSearch": "Tìm kiếm:",
+					"sZeroRecords": "Không có dữ liệu",
+					"sInfo": "Hiện từ _START_ đến _END_ của _TOTAL_ dòng",
+					"sInfoEmpty" : "Không tìm thấy",
+					"sInfoFiltered": " (tổng số _MAX_ dòng)"
+				}
+			});
+			$("#table_id").wrap('<div class="table-responsive"></div>');
+		});
+	</script>
 
-		<!-- OPTIONAL SCRIPTS -->
-		<script src="{{ asset('public/admin/plugins/chart.js/Chart.min.js')}}"></script>
-		<!-- AdminLTE for demo purposes -->
-		<script src="{{ asset('public/admin/dist/js/demo.js')}}"></script>
-		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-		<script src="{{ asset('public/admin/dist/js/pages/dashboard3.js')}}"></script>
 	</body>
 </html>

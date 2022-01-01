@@ -49,10 +49,15 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $request->validate([
-        $this->username() => 'required|string',
-            'password' => 'required|string',
-            'g-recaptcha-response' => new \App\Rules\CheckCaptcha,
-        ]);
+            $this->username() => 'required|string',
+                'password' => 'required|string',
+                'g-recaptcha-response' => new \App\Rules\CheckCaptcha,
+            ],
+            $messages = [
+                $this->username().'required' => 'Tài khoản không được bỏ trống',
+                'password.required' => 'Mật khẩu không được bỏ trống.',
+            ]
+     );
     }
     
     /**

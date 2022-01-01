@@ -13,7 +13,7 @@
             <a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fas fa-upload"></i> Nhập từ Excel</a>
 
         </p>
-        <table class="table table-bordered table-hover table-sm mb-0">
+        <table id="table_id" class="table table-bordered table-hover table-sm ">
             <thead>
                 <tr>
                     <th width="5%">#</th>

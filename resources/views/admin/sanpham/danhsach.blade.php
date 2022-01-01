@@ -14,7 +14,7 @@
             <a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fas fa-upload"></i> Nhập từ Excel</a>
             <a href="{{ route('admin.sanpham.xuat') }}" class="btn btn-success"><i class="fas fa-download"></i> Xuất ra Excel</a>
         </p>
-        <table class="table table-bordered table-hover table-sm mb-0">
+        <table id="table_id" class="table table-bordered table-hover table-sm ">
             <thead>
                 <tr>
                     <th width="5%">#</th>
@@ -25,6 +25,7 @@
                     <th width="20%">Tên sản phẩm không dấu</th>
                     <th width="7%">Số lượng</th>
                     <th width="10%">Đơn giá</th>
+                    <th width="10%">Hiển thị</th>
                     <th width="8%">Hình ảnh</th>
                     <th width="5%">Sửa</th>
                     <th width="5%">Xóa</th>
@@ -41,6 +42,13 @@
                     <td>{{ $value->tensanpham_slug }}</td>
                     <td class="text-end">{{ $value->soluong }}</td>
                     <td class="text-end">{{ number_format($value->dongia) }}</td>
+                    <td class="text-center">
+                            @if($value->hienthi == 1)
+                                <a href="{{ route('admin.sanpham.OnOffHienThi', ['id' => $value->id]) }}"><i class="fas fa-check-circle"></i></a>
+                            @else
+                                <a href="{{ route('admin.sanpham.OnOffHienThi', ['id' => $value->id]) }}"><i class="fas fa-ban text-danger"></i></a>           
+                            @endif
+                        </td>
                     <td class="text-center"><a href="{{ route('admin.hinhanh',['tensanpham_slug' => $value->tensanpham_slug]) }}"><i class="fas fa-images"></i></a></td>               
                     <td class="text-center"><a href="{{ route('admin.sanpham.sua', ['id' => $value->id]) }}"><i class="fa fa-edit"></i></a></td>
                     <td class="text-center"><a href="{{ route('admin.sanpham.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $value->tensanpham}} không?')"><i class="fa fa-trash-alt text-danger"></i></a></td>

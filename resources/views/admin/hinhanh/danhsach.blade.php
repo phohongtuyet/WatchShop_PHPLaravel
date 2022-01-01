@@ -4,7 +4,7 @@
  <div class="card">
         <div class="card-body table-responsive">
         <p><a href="{{ route('admin.hinhanh.them',['tensanpham_slug' => $sanpham->tensanpham_slug]) }}" class="btn btn-info"><i class="fas fa-plus"></i> Thêm mới</a></p>
-        <table class="table table-bordered table-hover table-sm mb-0">
+        <table id="table_id" class="table table-bordered table-hover table-sm ">
             <thead>
                 <tr>
                     <th width="5%">#</th>

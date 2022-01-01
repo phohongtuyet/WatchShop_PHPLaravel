@@ -62,16 +62,16 @@
                                     </li>
                                     <li><a href="{{route('frontend.sanpham.nu',['all'])}}">Nữ</a>
                                         <ul class="submenu" style="width: 200px;">
-                                            <li><a href="">Đồng đồ pin</a></li>
-                                            <li><a href="">Đồng đồ cơ</a></li>
-                                            <li><a href="">Đồng đồ thông minh</a></li>
+                                            <li><a href="{route('frontend.sanpham.nam',['dong-ho-pin'])}}">Đồng đồ pin</a></li>
+                                            <li><a href="{route('frontend.sanpham.nam',['dong-ho-co'])}}">Đồng đồ cơ</a></li>
+                                            <li><a href="{route('frontend.sanpham.nam',['dong-ho-thong-minh'])}}">Đồng đồ thông minh</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="{{route('frontend.thuonghieu',['all'])}}">Thương hiệu</a>
                                         <ul class="submenu" style="width: 500px;">  
                                             <div class="row row-cols-1 row-cols-md-3 g-1">
                                                 @foreach($type as $value)
-                                                    <div class="col mb-2 ms-1">
+                                                    <div class="col mb-2 ms-1 ps-1">
                                                         <div class="card" style="width: 6rem;">
                                                             <a href="{{route('frontend.thuonghieu',['all' => $value->tenthuonghieu_slug])}}" style="padding: 0;">
                                                                 <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" class="img-fluid" >

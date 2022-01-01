@@ -28,6 +28,15 @@ class SanPhamController extends Controller
         return view('admin.sanpham.danhsach', compact('sanpham'));
     }
 
+    public function getOnOffHienThi($id)
+    {
+        $orm = SanPham::find($id);
+        $orm->hienthi = 1 - $orm->hienthi; 
+        $orm->save();
+
+        return redirect()->route('admin.sanpham');
+    }
+
     // Nhập từ Excel
     public function postNhap(Request $request)
     {

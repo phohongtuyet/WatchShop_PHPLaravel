@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 @section('content')
+
+@if(Auth::user()->role == 'admin')
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -197,4 +199,16 @@
       </div>
     </div>
   </div>
+
+@else
+<section class="content">
+  <div class="card-body text-center">
+    <div class="card-body text-center">
+      <h5 >Chào mừng bạn đến với trang quản trị WatchShop</h5>
+      <img src="{{ asset('public/assets/img/logo/watchshop_logo.png')}}" >
+    </div>
+    
+  </div>
+</section>
+@endif
 @endsection

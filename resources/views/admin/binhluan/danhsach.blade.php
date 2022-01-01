@@ -8,7 +8,7 @@
             </div>
         @endif
         <div class="card-body table-responsive">
-        <table class="table table-bordered table-hover table-sm mb-0">
+        <table id="table_id" class="table table-bordered table-hover table-sm ">
             <thead>
                 <tr>
                     <th width="5%">#</th>

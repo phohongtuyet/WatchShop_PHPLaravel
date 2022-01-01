@@ -23,7 +23,7 @@
                     </select>
                 </form>
             </div>
-            <table class="table table-bordered table-hover table-sm mb-0">
+            <table id="table_id" class="table table-bordered table-hover table-sm ">
                 <thead>
                     <tr>
                         <th width="5%">#</th>
@@ -42,7 +42,13 @@
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->username }}</td>
                         <td>{{ $value->email }}</td>
-                        <td>{{ $value->role }}</td>
+                        <td class="text-center">
+                            @if($value->role == 'admin')
+                                <span class="badge bg-danger">{{ $value->role }}</span>
+                            @else
+                                <span class="badge bg-warning text-dark">{{ $value->role }}</span>
+                            @endif
+                        </td>
                         <td class="text-center"><a href="{{ route('admin.nguoidung.sua', ['id' => $value->id]) }}"><i class="fas fa-edit"></i></a></td>
                         <td class="text-center"><a href="{{ route('admin.nguoidung.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa người dùng {{ $value->name}} không?')"><i class="fas fa-trash-alt text-danger"></i></a></td>
                     </tr>

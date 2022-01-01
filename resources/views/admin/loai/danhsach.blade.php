@@ -9,7 +9,7 @@
             </div>
         @endif
         <p><a href="{{ route('admin.loai.them') }}" class="btn btn-info"><i class="fas fa-plus"></i> Thêm mới</a></p>
-        <table class="table table-bordered table-hover table-sm mb-0">
+        <table id="table_id" class="table table-bordered table-hover table-sm ">
             <thead>
                 <tr>
                     <th width="5%">#</th>

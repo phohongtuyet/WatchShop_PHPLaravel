@@ -9,7 +9,7 @@
         @endif
         <div class="card-body table-responsive">
         <p><a href="{{ route('admin.baiviet.them') }}" class="btn btn-info"><i class="fas fa-plus"></i> Thêm mới</a></p>
-        <table class="table table-bordered table-hover table-sm mb-0">
+        <table id="table_id" class="table table-bordered table-hover table-sm ">
             <thead>
                 <tr>
                     <th width="5%">#</th>
@@ -35,21 +35,21 @@
                             @if($value->kiemduyet == 1)
                                 <a href="{{ route('admin.baiviet.OnOffDuyet', ['id' => $value->id]) }}"><i class="fas fa-check-circle"></i></a>
                             @else
-                                <a href="{{ route('admin.baiviet.OnOffDuyet', ['id' => $value->id]) }}"><i class="fas fa-ban"></i></a>           
+                                <a href="{{ route('admin.baiviet.OnOffDuyet', ['id' => $value->id]) }}"><i class="fas fa-ban text-danger"></i></a>           
                             @endif
                         </td>
                         <td class="text-center">
                             @if($value->hienthi == 1)
                                 <a href="{{ route('admin.baiviet.OnOffHienThi', ['id' => $value->id]) }}"><i class="fas fa-check-circle"></i></a>
                             @else
-                                <a href="{{ route('admin.baiviet.OnOffHienThi', ['id' => $value->id]) }}"><i class="fas fa-ban"></i></a>           
+                                <a href="{{ route('admin.baiviet.OnOffHienThi', ['id' => $value->id]) }}"><i class="fas fa-ban text-danger"></i></a>           
                             @endif
                         </td>
                         <td class="text-center">
                             @if($value->binhluan == 1)
                                 <a href="{{ route('admin.baiviet.OnOffBinhLuan', ['id' => $value->id]) }}"><i class="fas fa-check-circle"></i></a>
                             @else
-                                <a href="{{ route('admin.baiviet.OnOffBinhLuan', ['id' => $value->id]) }}"><i class="fas fa-ban"></i></a>           
+                                <a href="{{ route('admin.baiviet.OnOffBinhLuan', ['id' => $value->id]) }}"><i class="fas fa-ban text-danger"></i></a>           
                             @endif
                         </td>
                         <td class="text-center">    
