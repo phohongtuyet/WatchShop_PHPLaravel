@@ -2,7 +2,7 @@
 @section('title', 'Bài viết')
 @section('content')
  <div class="card">
-    <div class="card-header">Bài viết</div>
+    <div class="card-header">Thêm bài viết</div>
     <div class="card-body table-responsive">
     <form action="{{ route('admin.baiviet.them') }}" method="post">
         @csrf

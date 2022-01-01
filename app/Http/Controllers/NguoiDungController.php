@@ -119,13 +119,15 @@ class NguoiDungController extends Controller
     public function getInfo()
     {
         $baiviet = BaiViet::where('nguoidung_id',Auth::user()->id)->get();
-       
-            foreach($baiviet as $value)
-            {
-                $binhluan = BinhLuan::where('baiviet_id', $value->id)->get();
-            }
-            return view('admin.nguoidung.info',compact('baiviet','binhluan'));
         
+        foreach($baiviet as $value)
+        {
+            $binhluan = BinhLuan::where('baiviet_id', $value->id)->get();
+        }
+        if(!empty($binhluan))
+            return view('admin.nguoidung.info',compact('baiviet','binhluan'));
+        else
+            return view('admin.nguoidung.info',compact('baiviet'));
 
     }
 
@@ -144,7 +146,7 @@ class NguoiDungController extends Controller
         if(!empty($request->password)) $orm->password = Hash::make($request->password);
         $orm->save();
         
-        return redirect()->route('admin.nguoidung')->with('status', 'Cập nhật  thành công');
+        return redirect()->route('admin.nguoidung.info',Auth::user()->name)->with('status', 'Cập nhật  thành công');
     }
     
 }

@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
 			'username' => 'admin',
 			'email' => 'watchshopphp@gmail.com',
             'email_verified_at' => Carbon::now(),
-			'password' => '$2a$12$dzmr1o.tIG6HHLt9uMNrE.zgL1D1lQ.t3lgToCAcyVHeQKthKrWKG', // 123456789.$
+			'password' => '$2y$10$OZ5YFT7m2IQBEmQyf9B5K.yUER247wUgDi9t0mfnljdDie2Do.GuC', // 123456789
 			'role' => 'admin',
 		]);
     }

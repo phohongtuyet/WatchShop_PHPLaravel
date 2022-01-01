@@ -2,7 +2,11 @@
 @section('title', 'Thông tin cá nhân')
 
 @section('content')
-
+@if (session('status'))
+            <div id="AlertBox" class="alert alert-success hide" role="alert">
+                {!! session('status') !!}
+            </div>
+@endif
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -27,8 +31,12 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
+                  @if($baiviet->count() == 0)
+                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Thông tin cá nhân</a></li>
+                  @else
                   <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Bài viết của tôi</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Thông tin cá nhân</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Thông tin cá nhân</a></li>
+                  @endif
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -44,8 +52,13 @@
 
                       <p>
                         <i class="fas fa-eye mr-1"></i> Lượt xem ({{$value->luotxem}})
-                        <a @if(isset($binhluan)) href="{{ route('admin.binhluan', ['tieude_slug' => $value->tieude_slug]) }}" @else  href="" @endif class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận (@if(empty($binhluan)) {{ $binhluan->count()}}@endif)</a>
-                        <span class="float-right">
+                        @if(empty($binhluan))
+                          <a  href="{{ route('admin.binhluan', ['tieude_slug' => $value->tieude_slug]) }}"  class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận ( {{ $binhluan->count()}})</a>
+                        @else
+                          <a  href=""  class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận (0)</a>
+
+                        @endif
+                          <span class="float-right">
                           <a href="{{ route('admin.baiviet.sua', ['id' => $value->id]) }}" class="link-black text-sm" style="text-decoration:none;">
                             <i class="fas fa-edit"></i> Sửa
                           </a>
@@ -127,6 +140,14 @@
                 $("#change_password_group :input").removeAttr("required");
             }
         });
+    });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function() {
+        $('#AlertBox').removeClass('hide');
+        $('#AlertBox').delay(2000).slideUp(500);
     });
 </script>
 @endsection
