@@ -33,7 +33,7 @@
                         <td>{{ $value->tenthuonghieu_slug }}</td>
                         <td class="text-center"><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" width="100" class="img-thumbnail"/></td>                   
                         <td class="text-center"><a href="{{ route('admin.thuonghieu.sua', ['id' => $value->id]) }}"><i class="fa fa-edit"></i></a></td>
-                        <td class="text-center"><a href="{{ route('admin.thuonghieu.xoa', ['id' => $value->id]) }}"><i class="fa fa-trash-alt text-danger"></i></a></td>
+                        <td class="text-center"><a href="{{ route('admin.thuonghieu.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa thương hiệu {{ $value->tenthuonghieu}} không?')"><i class="fa fa-trash-alt text-danger"></i></a></td>
                     </tr>
                 @endforeach
             </tbody>

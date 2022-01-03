@@ -33,6 +33,11 @@ class HinhAnhController extends Controller
         $this->validate($request, [
             'HinhAnh' => ['required'],
             'HinhAnh.*' => ['mimes:jpeg,png,jpg,gif,svg', 'image', 'max:1024'],
+        ],
+        $messages = [
+            'required' => 'Hình ảnh không được bỏ trống.',
+            'image' => 'Phải là hình ảnh.',
+            'mimes' => 'Hình ảnh chỉ hỗ trợ các định dạng jpeg,png,jpg,gif,svg.',
         ]);
 
         $sanpham = SanPham::where('tensanpham_slug',$tensanpham_slug)->first();
@@ -69,6 +74,11 @@ class HinhAnhController extends Controller
     {   
         $this->validate($request, [
             'HinhAnh' => ['required','mimes:jpeg,png,jpg,gif,svg', 'image', 'max:1024'],
+        ],
+        $messages = [
+            'required' => 'Hình ảnh không được bỏ trống.',
+            'image' => 'Phải là hình ảnh.',
+            'mimes' => 'Hình ảnh chỉ hỗ trợ các định dạng jpeg,png,jpg,gif,svg.',
         ]);
 
         $hinhanh = HinhAnh::find($id);

@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Người dùng')
 @section('content')
     <div class="card">
         <div class="card-header">Thêm tài khoản</div>
@@ -8,7 +9,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="name">Họ và tên</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required />
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}"  />
                     @error('name')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror
@@ -16,7 +17,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="email">Địa chỉ email</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required />
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}"  />
                     @error('email')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror
@@ -24,11 +25,11 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="role">Quyền hạn</label>
-                    <select class="form-select @error('role') is-invalid @enderror" id="role" name="role" required>
+                    <select class="form-select @error('role') is-invalid @enderror" id="role" name="role" >
                         <option value="">-- Chọn --</option>
                         <option value="admin">Quản trị viên</option>
                         <option value="staff">Nhân viên</option>
-                        <option value="user" selected>Khách hàng</option>
+                        <option value="user">Khách hàng</option>
                     </select>
                     @error('role')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
@@ -37,7 +38,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="password">Mật khẩu mới</label>
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required />
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"  />
                     @error('password')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror
@@ -45,7 +46,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="password_confirmation">Xác nhận mật khẩu mới</label>
-                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" required />
+                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation"  />
                     @error('password_confirmation')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror

@@ -4,7 +4,7 @@
  <div class="card">
     <div class="card-header">Sửa bài viết</div>
     <div class="card-body table-responsive">
-    <form action="{{ route('admin.baiviet.sua',['id' => $baiviet -> id]) }}" method="post">
+    <form action="{{ route('admin.baiviet.sua.info',['id' => $baiviet -> id]) }}" method="post">
         @csrf
         <div class="mb-3">
             <label for="tieude" class="form-label  @error('tieude') is-invalid @enderror" value="{{ old('tieude') }}">Tiêu đề   </label>

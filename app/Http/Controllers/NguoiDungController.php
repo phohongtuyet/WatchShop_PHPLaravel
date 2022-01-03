@@ -69,6 +69,16 @@ class NguoiDungController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:nguoidung'],
             'role' => ['required'],
             'password' => ['required', 'min:4', 'confirmed'],
+        ],
+        $messages = [
+            'name.required' => 'Họ và tên không được bỏ trống.',
+            'email.required' => 'Địa chỉ email không được bỏ trống.',
+            'role.required' => 'Chưa chọn quyền hạn.',
+            'password.required' => 'Mật khẩu không được bỏ trống.',
+            'password.confirmed' => 'Xác nhân mật khẩu không được bỏ trống.',
+            'password.min' => 'Mật khẩu tối đa 4 ký tự.',
+            'email.unique' => 'Địa chỉ email đã tồn tại.',
+
         ]);
         
         $orm = new NguoiDung();
@@ -79,13 +89,13 @@ class NguoiDungController extends Controller
         $orm->role = $request->role;
         $orm->save();
         
-        return redirect()->route('admin.nguoidung')->with('status', 'Thêm mới thành công');;
+        return redirect()->route('admin.nguoidung')->with('status', 'Thêm mới thành công');
     }
     
     public function getSua($id)
     {
         $nguoidung = NguoiDung::find($id);
-        return view('admin.nguoidung.sua', ['nguoidung' => $nguoidung]);
+        return view('admin.nguoidung.sua', compact('nguoidung'));
     }
     
     public function postSua(Request $request)
@@ -95,6 +105,15 @@ class NguoiDungController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:nguoidung,email,' . $request->id],
             'role' => ['required'],
             'password' => ['confirmed'],
+        ],
+        $messages = [
+            'name.required' => 'Họ và tên không được bỏ trống.',
+            'email.required' => 'Địa chỉ email không được bỏ trống.',
+            'role.required' => 'Chưa chọn quyền hạn.',
+            'password.required' => 'Mật khẩu không được bỏ trống.',
+            'password.confirmed' => 'Xác nhân mật khẩu không được bỏ trống.',
+            'password.min' => 'Mật khẩu tối đa 4 ký tự.',
+            'email.unique' => 'Địa chỉ email đã tồn tại.',
         ]);
         
         $orm = NguoiDung::find($request->id);
@@ -105,7 +124,7 @@ class NguoiDungController extends Controller
         if(!empty($request->password)) $orm->password = Hash::make($request->password);
         $orm->save();
         
-        return redirect()->route('admin.nguoidung')->with('status', 'Cập nhật  thành công');
+        return redirect()->route('admin.nguoidung')->with('status', 'Cập nhật thành công');
     }
     
     public function getXoa($id)
@@ -124,6 +143,7 @@ class NguoiDungController extends Controller
         {
             $binhluan = BinhLuan::where('baiviet_id', $value->id)->get();
         }
+
         if(!empty($binhluan))
             return view('admin.nguoidung.info',compact('baiviet','binhluan'));
         else
@@ -148,5 +168,7 @@ class NguoiDungController extends Controller
         
         return redirect()->route('admin.nguoidung.info',Auth::user()->name)->with('status', 'Cập nhật  thành công');
     }
+
+    
     
 }

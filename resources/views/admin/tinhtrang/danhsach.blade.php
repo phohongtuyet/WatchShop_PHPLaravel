@@ -24,7 +24,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $value->tinhtrang }}</td>
                         <td class="text-center"><a href="{{ route('admin.tinhtrang.sua', ['id' => $value->id]) }}"><i class="fa fa-edit"></i></a></td>
-                        <td class="text-center"><a href="{{ route('admin.tinhtrang.xoa', ['id' => $value->id]) }}"><i class="fa fa-trash-alt text-danger"></i></a></td>
+                        <td class="text-center"><a href="{{ route('admin.tinhtrang.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa tình trạng {{ $value->tinhtrang}} không?')"><i class="fa fa-trash-alt text-danger"></i></a></td>
                     </tr>
                 @endforeach
             </tbody>

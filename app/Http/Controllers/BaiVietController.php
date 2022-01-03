@@ -57,6 +57,11 @@ class BaiVietController extends Controller
         $this->validate($request, [
             'tieude' => ['required','string', 'unique:baiviet'],
             'noidung' => ['required'],
+        ],
+        $messages = [
+            'tieude.required' => 'Tiêu đề không được bỏ trống.',
+            'noidung.required' => 'Nội dung  không được bỏ trống.',
+
         ]);
            
         $orm = new BaiViet();
@@ -81,6 +86,11 @@ class BaiVietController extends Controller
         $this->validate($request, [
             'tieude' => ['required', 'string', 'unique:baiviet,tieude,'.$id],
             'noidung' => ['required'],
+        ],
+        $messages = [
+            'tieude.required' => 'Tiêu đề không được bỏ trống.',
+            'noidung.required' => 'Nội dung  không được bỏ trống.',
+
         ]);
            
         $orm = BaiViet::find($id);
@@ -106,4 +116,47 @@ class BaiVietController extends Controller
     
         return redirect()->route('admin.baiviet')->with('status','Xóa thành công');
     }
+    
+    public function getSuaBaiVietInfo($id)
+    {
+        $baiviet = BaiViet::find($id);
+        return view('admin.baiviet.suainfo', compact('baiviet'));
+    }
+
+    public function postSuaBaiVietInfo(Request $request, $id)
+    {
+        $this->validate($request, [
+            'tieude' => ['required', 'string', 'unique:baiviet,tieude,'.$id],
+            'noidung' => ['required'],
+        ],
+        $messages = [
+            'tieude.required' => 'Tiêu đề không được bỏ trống.',
+            'noidung.required' => 'Nội dung  không được bỏ trống.',
+
+        ]);
+           
+        $orm = BaiViet::find($id);
+        $orm->nguoidung_id = Auth::user()->id;
+        $orm->tieude = $request->tieude;
+        $orm->tieude_slug = Str::slug($request->tieude, '-');
+        $orm->tomtat = $request->tomtat;
+        $orm->noidung = $request->noidung;
+        $orm->luotxem = $orm->luotxem;
+        $orm->binhluan = $orm->binhluan;
+        $orm->kiemduyet = $orm->kiemduyet;
+        $orm->hienthi = $orm->hienthi;
+        $orm->save();
+
+        return redirect()->route('admin.nguoidung.info',Auth::user()->name)->with('status','Cập nhật thành công');
+
+    }
+
+    public function getXoaInfo($id)
+    {
+        $orm = BaiViet::find($id);
+        $orm->delete();
+    
+        return redirect()->route('admin.nguoidung.info',Auth::user()->name)->with('status','Xóa thành công');
+    }
+    
 }

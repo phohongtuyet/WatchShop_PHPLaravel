@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Người dùng')
 @section('content')
 <div class="card">
     <div class="card-header">Cập nhật tài khoản</div>
@@ -7,7 +8,7 @@
         @csrf
             <div class="mb-3">
                 <label class="form-label" for="name">Họ và tên</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $nguoidung->name }}" required />
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $nguoidung->name }}"  />
                 @error('name')
                     <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                 @enderror
@@ -15,7 +16,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="email">Địa chỉ email</label>
-                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $nguoidung->email }}" required />
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $nguoidung->email }}"  />
                 @error('email')
                     <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                 @enderror
@@ -23,9 +24,10 @@
 
             <div class="mb-3">
                 <label class="form-label" for="role">Quyền hạn</label>
-                <select class="form-select @error('role') is-invalid @enderror" id="role" name="role" required>
+                <select class="form-select @error('role') is-invalid @enderror" id="role" name="role" >
                     <option value="">-- Chọn --</option>
                     <option value="admin" {{ ($nguoidung->role == 'admin') ? 'selected' : '' }}>Quản trị viên</option>
+                    <option value="staff" {{ ($nguoidung->role == 'staff') ? 'selected' : '' }}>Nhân viên </option>
                     <option value="user" {{ ($nguoidung->role == 'user') ? 'selected' : '' }}>Khách hàng</option>
                 </select>
                 @error('role')
@@ -55,7 +57,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary"><i class="fal fa-save"></i> Cập nhật</button>
+            <button type="submit" class="btn btn-primary"> Cập nhật</button>
         </form>
     </div>
 </div>

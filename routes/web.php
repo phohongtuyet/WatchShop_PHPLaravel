@@ -169,7 +169,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::get('/baiviet/OnOffDuyet/{id}', [BaiVietController::class, 'getOnOffDuyet'])->name('baiviet.OnOffDuyet')->middleware('admin');
     Route::get('/baiviet/OnOffHienThi/{id}', [BaiVietController::class, 'getOnOffHienThi'])->name('baiviet.OnOffHienThi')->middleware('admin');
     Route::get('/baiviet/OnOffBinhLuan/{id}', [BaiVietController::class, 'getOnOffBinhLuan'])->name('baiviet.OnOffBinhLuan')->middleware('admin');
-
+    Route::get('/baiviet/sua/info/{id}', [BaiVietController::class, 'getSuaBaiVietInfo'])->name('baiviet.sua.info')->middleware('nhanvien');
+    Route::post('/baiviet/sua/info/{id}', [BaiVietController::class, 'postSuaBaiVietInfo'])->name('baiviet.sua.info')->middleware('nhanvien');
+    Route::get('/baiviet/xoa/info/{id}', [BaiVietController::class, 'getXoaInfo'])->name('baiviet.xoa.info')->middleware('nhanvien');
 
     // Quản lý bình luận
     Route::get('/binhluan/{tieude_slug}', [BinhLuanController::class, 'getDanhSach'])->name('binhluan')->middleware('nhanvien');
@@ -216,7 +218,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::post('/nguoidung/nhap', [NguoiDungController::class, 'postNhap'])->name('nguoidung.nhap')->middleware('admin');
     Route::post('/nguoidung/xuat', [NguoiDungController::class, 'postXuat'])->name('nguoidung.xuat')->middleware('admin');
     Route::get('/nguoidung/info/{name}', [NguoiDungController::class, 'getInfo'])->name('nguoidung.info')->middleware('nhanvien');
-    Route::post('/nguoidung/sua/{id}', [NguoiDungController::class, 'postSuaInfo'])->name('nguoidung.sua.info')->middleware('nhanvien');
+    Route::post('/nguoidung/sua/info/{id}', [NguoiDungController::class, 'postSuaInfo'])->name('nguoidung.sua.info')->middleware('nhanvien');
 
 
 });

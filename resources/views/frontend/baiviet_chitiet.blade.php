@@ -19,6 +19,11 @@
     <!--================Blog Area =================-->
     <section class="blog_area single-post-area section-padding">
         <div class="container">
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+               {{ session()->get('success') }}
+            </div>
+          @endif
         <div class="row">
             <div class="col-lg-12 posts-list">
                 <div class="single-post">

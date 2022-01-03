@@ -45,8 +45,11 @@
                         <td class="text-center">
                             @if($value->role == 'admin')
                                 <span class="badge bg-danger">{{ $value->role }}</span>
-                            @else
+                            @elseif($value->role == 'staff')
                                 <span class="badge bg-warning text-dark">{{ $value->role }}</span>
+                            @else
+                                <span class="badge bg-info text-dark">{{ $value->role }}</span>
+
                             @endif
                         </td>
                         <td class="text-center"><a href="{{ route('admin.nguoidung.sua', ['id' => $value->id]) }}"><i class="fas fa-edit"></i></a></td>

@@ -66,10 +66,23 @@ class SanPhamController extends Controller
            'thuonghieu_id' => ['required'],
            'chatlieu_id' => ['required'],
            'loai_id' => ['required'],
+           'gioitinh' => ['required'],
            'tensanpham' =>['required','max:255','unique:sanpham'],
-           'soluong' =>['required','numeric'],
-           'dongia' =>['required','numeric'],
-       ]);
+           'soluong' =>['required','numeric','min:1'],
+           'dongia' =>['required','numeric','min:200000'],
+       ],
+       $messages = [
+        'thuonghieu_id.required' => 'Chưa chọn thương hiêu.',
+        'chatlieu_id.required' => 'Chưa chọn chất liệu.',
+        'loai_id.required' => 'Chưa chọn loại.',
+        'tensanpham.required' => 'Tên sản phẩm không được bỏ trống.',
+        'soluong.required' => 'Số lượng không được bỏ trống.',
+        'dongia.required' => 'Đơn giá không được bỏ trống.',
+        'gioitinh.required' => 'Chưa chọn đối tượng sử dụng.',
+        'soluong.min' => 'Số lượng tối thiểu là 1.',
+        'dongia.min' => 'Đơn giá tối thiểu là 200000.',
+
+    ]);
 
         $orm = new SanPham();
         $orm->thuonghieu_id = $request->thuonghieu_id;

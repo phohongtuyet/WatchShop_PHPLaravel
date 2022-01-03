@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Hình ảnh')
 @section('content')
     <div class="card">
         <div class="card-header">Thêm hình ảnh </div>
@@ -7,12 +8,12 @@
                 @csrf          
                 <div class="mb-3">
                     <label class="form-label" for="HinhAnh">Hình ảnh</label>
-                    <input type="file" class="form-control @error('HinhAnh') is-invalid @enderror"  name="HinhAnh[]" accept=".jpg, .jpeg, .png" multiple />
+                    <input type="file" class="form-control @error('HinhAnh') is-invalid @enderror"  name="HinhAnh[]"  multiple />
                     @error('HinhAnh')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror
                 </div>          
-                <button type="submit" class="btn btn-primary"><i class="fal fa-save"></i> Thêm vào CSDL</button>
+                <button type="submit" class="btn btn-primary"> Thêm vào CSDL</button>
             </form>
         </div>
     </div>

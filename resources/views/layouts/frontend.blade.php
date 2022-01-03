@@ -45,7 +45,7 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="{{route('frontend')}}"><img src="{{ asset('public/assets/img/logo/watchshop_logo.png')}}" alt=""></a>
+                            <a href="{{route('frontend')}}"><img src="{{ asset('public/assets/img/logo/watchshop_logo1.png')}}" alt=""></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
@@ -106,9 +106,9 @@
                                 </li>
                                 
                                 <li >
-                                    <a href="{{route('frontend.giohang')}}">
-                                        <span class="flaticon-shopping-cart">
-                                            <sup >{{ Cart::count() ?? 0 }}</sup>
+                                    <a href="{{route('frontend.giohang')}}" class="position-relative">
+                                        <span class="flaticon-shopping-cart ">
+                                            <sup class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger">{{ Cart::count() ?? 0 }}</sup>
                                         </span>
                                     </a> 
                                 </li>

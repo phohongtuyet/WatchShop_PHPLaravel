@@ -59,10 +59,10 @@
 
                         @endif
                           <span class="float-right">
-                          <a href="{{ route('admin.baiviet.sua', ['id' => $value->id]) }}" class="link-black text-sm" style="text-decoration:none;">
-                            <i class="fas fa-edit"></i> Sửa
+                          <a href="{{ route('admin.baiviet.sua.info', ['id' => $value->id]) }}" class="link-black text-sm" style="text-decoration:none;">
+                            <i class="fas fa-edit text-info"></i> Sửa
                           </a>
-                          <a href="{{ route('admin.baiviet.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa bài viết {{ $value->tieude}} không?')" style="text-decoration:none;">
+                          <a href="{{ route('admin.baiviet.xoa.info', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa bài viết {{ $value->tieude}} không?')" style="text-decoration:none;">
                             <i class="fas fa-trash-alt text-danger"></i> Xóa
                           </a>
                         </span>

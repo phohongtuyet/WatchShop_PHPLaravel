@@ -9,7 +9,7 @@
                 @csrf          
                 <div class="mb-3">
                     <label class="form-label" for="thuonghieu_id">Thương hiệu</label>
-                    <select class="form-control @error('thuonghieu_id') is-invalid @enderror" name="thuonghieu_id" id="thuonghieu_id" require> 
+                    <select class="form-control @error('thuonghieu_id') is-invalid @enderror" name="thuonghieu_id" id="thuonghieu_id" value="{{ old('thuonghieu_id') }}" > 
                         <option value="">-- Chọn thương hiệu --</option>
                         @foreach($thuonghieu as $value)
                             <option value="{{ $value->id }}">{{ $value->tenthuonghieu }}</option>
@@ -21,7 +21,7 @@
                 </div>  
                 <div class="mb-3">
                     <label class="form-label" for="chatlieu_id">Chất liệu</label>
-                    <select class="form-control @error('chatlieu_id') is-invalid @enderror" name="chatlieu_id" id="chatlieu_id" require> 
+                    <select class="form-control @error('chatlieu_id') is-invalid @enderror" name="chatlieu_id" id="chatlieu_id" value="{{ old('chatlieu_id') }}"> 
                         <option value="">-- Chọn chất liệu--</option>
                         @foreach($chatlieu as $value)
                             <option value="{{ $value -> id}}">{{ $value -> tenchatlieu}}</option>
@@ -33,7 +33,7 @@
                 </div>  
                 <div class="mb-3">
                     <label class="form-label" for="loai_id">Loại </label>
-                    <select class="form-control @error('loai_id') is-invalid @enderror" name="loai_id" id="loai_id" require> 
+                    <select class="form-control @error('loai_id') is-invalid @enderror" name="loai_id" id="loai_id" value="{{ old('loai_id') }}"> 
                         <option value="">-- Chọn loại --</option>
                         @foreach($loai as $value)
                             <option value="{{ $value->id }}">{{ $value->tenloai }}</option>
@@ -52,7 +52,7 @@
                 </div>  
                 <div class="mb-3">
                     <label class="form-label" for="gioitinh">Đối tượng sử dụng</label>
-                    <select class="form-control @error('gioitinh') is-invalid @enderror" name="gioitinh" id="gioitinh" require> 
+                    <select class="form-control @error('gioitinh') is-invalid @enderror" name="gioitinh" id="gioitinh" value="{{ old('soluong') }}"> 
                         <option value="">-- Chọn --</option>
                         <option value="1" >Nam</option>
                         <option value="2" >Nữ</option>
@@ -65,14 +65,14 @@
                 </div>  
                 <div class="mb-3">
                     <label class="form-label" for="soluong">Số lượng</label>
-                    <input type="number" class="form-control @error('soluong') is-invalid @enderror" id="soluong" name="soluong"  value="{{ old('soluong') }}" required />
+                    <input type="number" class="form-control @error('soluong') is-invalid @enderror" id="soluong" name="soluong"  value="{{ old('soluong') }}"  />
                     @error('soluong')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror
                 </div>  
                 <div class="mb-3">
                     <label class="form-label" for="dongia">Đơn giá</label>
-                    <input type="dongia" class="form-control @error('dongia') is-invalid @enderror" id="dongia" name="dongia" value="{{ old('dongia') }}" required />
+                    <input type="number" class="form-control @error('dongia') is-invalid @enderror" id="dongia" name="dongia" value="{{ old('dongia') }}"  />
                     @error('dongia')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror

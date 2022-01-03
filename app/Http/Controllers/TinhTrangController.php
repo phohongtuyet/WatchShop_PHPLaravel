@@ -28,6 +28,11 @@ class TinhTrangController extends Controller
     {
         $this->validate($request, [
             'tinhtrang' => ['required', 'max:255', 'unique:tinhtrang'],
+        ],
+        $messages = [
+            'required' => 'Tên tình trạng không được bỏ trống.',
+            'unique' => 'Tên tình trạng đã có trong hệ thống.',
+            'max'=> 'Tên tình trạng vượt quá 255 ký tự.'
         ]);
 
        
@@ -35,7 +40,7 @@ class TinhTrangController extends Controller
         $orm->tinhtrang = $request->tinhtrang;
         $orm->save();
         
-        return redirect()->route('admin.tinhtrang')->with('status', 'Đăng ký thành công');
+        return redirect()->route('admin.tinhtrang')->with('status', 'Thêm mới thành công');
 
         //return redirect()->route('admin.tinhtrang');
     }
@@ -50,13 +55,18 @@ class TinhTrangController extends Controller
     {
         $this->validate($request, [
             'tinhtrang' => ['required', 'max:255', 'unique:tinhtrang,tinhtrang,'.$id],
+        ],
+        $messages = [
+            'required' => 'Tên tình trạng không được bỏ trống.',
+            'unique' => 'Tên tình trạng đã có trong hệ thống.',
+            'max'=> 'Tên tình trạng vượt quá 255 ký tự.'
         ]);
 
         $orm = TinhTrang::find($id);
         $orm->tinhtrang = $request->tinhtrang;
         $orm->save();
 
-        return redirect()->route('admin.tinhtrang');
+        return redirect()->route('admin.tinhtrang')->with('status', 'Cập nhật thành công');
 
     }
 
@@ -65,6 +75,6 @@ class TinhTrangController extends Controller
         $orm = TinhTrang::find($id);
         $orm->delete();
 
-        return redirect()->route('admin.tinhtrang');
+        return redirect()->route('admin.tinhtrang')->with('status', 'Xóa thành công');
     }
 }

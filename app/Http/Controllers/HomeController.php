@@ -10,6 +10,7 @@ use App\Models\DonHang_ChiTiet;
 use App\Models\BaiViet;
 use App\Models\BinhLuan;
 use App\Models\ThuongHieu;
+use App\Models\Loai;
 use App\Mail\DatHangEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -249,6 +250,7 @@ class HomeController extends Controller
         $orm->baiviet_id = $baiviet->id;
         $orm->noidung = $request->noidung;
         $orm->save();
+        session()->flash('success', 'Bình luận của bạn đã được ghi nhận');
 
         return view('frontend.baiviet_chitiet', compact('baiviet','binhluan'));
     }
@@ -437,33 +439,14 @@ class HomeController extends Controller
             return view('frontend.thuonghieu',compact('sanpham','session_title'));
 
         }
-        else if($all == 'dong-ho-pin')
+        else
         {
+            $loai = Loai::where('tenloai_slug',$all)->first();
             $sanpham = SanPham::select( 'sanpham.*',
                 DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-                ->where('sanpham.hienthi',1)->where('loai_id',1)->where('gioitinh',1)
+                ->where('sanpham.hienthi',1)->where('loai_id',$loai->id)->where('gioitinh',1)
                 ->paginate(9);
-            $session_title = 'Đồng hồ pin';
-            return view('frontend.thuonghieu',compact('sanpham','session_title'));
-
-        }
-        else if($all == 'dong-ho-co')
-        {
-            $sanpham = SanPham::select( 'sanpham.*',
-                DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-                ->where('sanpham.hienthi',1)->where('loai_id',2)->where('gioitinh',1)
-                ->paginate(9);
-            $session_title = 'Đồng hồ cơ';
-            return view('frontend.thuonghieu',compact('sanpham','session_title'));
-
-        }
-        else 
-        {
-            $sanpham = SanPham::select( 'sanpham.*',
-                DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-                ->where('sanpham.hienthi',1)->where('loai_id',3)->where('gioitinh',1)
-                ->paginate(9);
-            $session_title = 'Đồng thông minh';
+            $session_title = $loai->tenloai ;
             return view('frontend.thuonghieu',compact('sanpham','session_title'));
 
         }
@@ -481,34 +464,15 @@ class HomeController extends Controller
             $session_title = "Nữ";
             return view('frontend.thuonghieu',compact('sanpham','session_title'));
 
-        }
-        else if($all == 'dong-ho-pin')
-        {
-            $sanpham = SanPham::select( 'sanpham.*',
-                DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-                ->where('sanpham.hienthi',1)->where('loai_id',1)->where('gioitinh',2)
-                ->paginate(9);
-            $session_title = 'Đồng hồ pin';
-            return view('frontend.thuonghieu',compact('sanpham','session_title'));
-
-        }
-        else if($all == 'dong-ho-co')
-        {
-            $sanpham = SanPham::select( 'sanpham.*',
-                DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-                ->where('sanpham.hienthi',1)->where('loai_id',2)->where('gioitinh',2)
-                ->paginate(9);
-            $session_title = 'Đồng hồ cơ';
-            return view('frontend.thuonghieu',compact('sanpham','session_title'));
-
-        }
+        }   
         else 
         {
+            $loai = Loai::where('tenloai_slug',$all)->first();
             $sanpham = SanPham::select( 'sanpham.*',
                 DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-                ->where('sanpham.hienthi',1)->where('loai_id',3)->where('gioitinh',2)
+                ->where('sanpham.hienthi',1)->where('loai_id',$loai->id)->where('gioitinh',2)
                 ->paginate(9);
-            $session_title = 'Đồng thông minh';
+            $session_title = $loai->tenloai;
             return view('frontend.thuonghieu',compact('sanpham','session_title'));
 
         }

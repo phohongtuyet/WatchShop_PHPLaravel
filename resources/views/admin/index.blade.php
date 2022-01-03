@@ -205,7 +205,7 @@
   <div class="card-body text-center">
     <div class="card-body text-center">
       <h5 >Chào mừng bạn đến với trang quản trị WatchShop</h5>
-      <img src="{{ asset('public/assets/img/logo/watchshop_logo.png')}}" >
+      <img src="{{ asset('public/assets/img/logo/watchshop_logo1.png')}}" >
     </div>
     
   </div>
