@@ -27,7 +27,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', [HomeController::class, 'getHome'])->name('frontend');
 // Trang sản phẩm
 Route::get('/san-pham', [HomeController::class, 'getSanPham'])->name('frontend.sanpham');
-Route::get('/sanpham', [HomeController::class, 'postSanPham'])->name('frontend.sanpham');
+Route::get('/san-pham', [HomeController::class, 'postSanPham'])->name('frontend.sanpham');
 Route::post('/san-pham', [HomeController::class, 'postTrang'])->name('frontend.trang');
 Route::get('/san-pham/{tensanpham_slug}', [HomeController::class, 'getSanPham_ChiTiet'])->name('frontend.sanpham.chitiet');
 Route::get('/dong-ho/nam/{all}', [HomeController::class, 'getDongHoNam'])->name('frontend.sanpham.nam');
@@ -201,6 +201,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::post('/donhang/trangthai/{id}', [DonHangController::class, 'postTrangThai'])->name('donhang.trangthai')->middleware('nhanvien');
     Route::get('/donhang/doanhthu', [DonHangController::class, 'getDoanhThu'])->name('donhang.doanhthu')->middleware('nhanvien');
     Route::post('/donhang/doanhthu', [DonHangController::class, 'postDoanhThu'])->name('donhang.doanhthu')->middleware('nhanvien');
+    Route::get('/donhang/ngay', [DonHangController::class, 'getDanhSachNgay'])->name('donhang.ngay')->middleware('admin');
 
     // Quản lý Đơn hàng chi tiết
     Route::get('/donhang/chitiet/{id}', [DonHangChiTietController::class, 'getDanhSach'])->name('donhang.chitiet')->middleware('admin');

@@ -25,6 +25,7 @@ class AdminController extends Controller
             $donhang = DonHang::where('tinhtrang_id',1)->get();
             $user = NguoiDung::all();
             $sanpham = SanPham::where('soluong',0)->get();
+            $date = Carbon::today();//lay ngay hien tai
 
             $doanhthu = DonHang_ChiTiet::leftJoin('donhang', 'donhang.id', '=', 'donhang_chitiet.donhang_id')
                 ->leftJoin('sanpham', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
@@ -32,10 +33,7 @@ class AdminController extends Controller
                         DB::raw('sum(donhang_chitiet.soluongban) AS tongsoluongban'),
                         DB::raw('(select donhang_chitiet.dongiaban from donhang_chitiet limit 1) as dongiaban')
                         )
-                ->where([
-                    ['donhang.created_at', '>=', Carbon::now()],
-                    ['donhang.created_at', '<=', Carbon::now()],
-                ])
+                ->whereBetween('donhang.created_at', [$date->format('Y-m-d')." 00:00:00", $date->format('Y-m-d')." 23:59:59"])
                 ->groupBy('sanpham.id')
                 ->get();
             return view('admin.index',compact('donhang','user','sanpham','doanhthu'));

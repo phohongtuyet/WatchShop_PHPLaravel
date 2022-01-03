@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DonHangController extends Controller
 {
@@ -20,6 +21,13 @@ class DonHangController extends Controller
     public function getDanhSach()
     {
         $donhang = DonHang::orderBy('created_at', 'desc')->get();
+        return view('admin.donhang.danhsach', compact('donhang'));
+    }
+
+    public function getDanhSachNgay()
+    {
+        $date = Carbon::today();//lay ngay hien tai
+        $donhang = DonHang::whereBetween('donhang.created_at', [$date->format('Y-m-d')." 00:00:00", $date->format('Y-m-d')." 23:59:59"])->get();
         return view('admin.donhang.danhsach', compact('donhang'));
     }
 
