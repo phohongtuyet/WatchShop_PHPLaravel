@@ -45,7 +45,7 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="{{route('frontend')}}"><img src="{{ asset('public/assets/img/logo/watchshop_logo1.png')}}" alt=""></a>
+                            <a href="{{route('frontend')}}"><img src="{{ asset('public/assets/img/logo/watchshop_logo.png')}}" alt=""></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
@@ -53,18 +53,18 @@
                                 <ul id="navigation">  
                                     <li><a href="{{route('frontend')}}">Trang chủ</a></li>
                                     <li><a href="{{route('frontend.sanpham.nam',['all'])}}">Nam</a>
-                                        <ul class="submenu" style="width: 200px;">
-                                            <li><a href="{{route('frontend.sanpham.nam',['dong-ho-pin'])}}">Đồng đồ pin</a></li>
-                                            <li><a href="{{route('frontend.sanpham.nam',['dong-ho-co'])}}">Đồng đồ cơ</a></li>
-                                            <li><a href="{{route('frontend.sanpham.nam',['dong-ho-thong-minh'])}}">Đồng đồ thông minh</a></li>
-                                            
+                                        <ul class="submenu" style="width: 200px;">            
+                                            @foreach($loai as $value)
+                                                <li><a href="{{route('frontend.sanpham.nam',[$value->tenloai_slug])}}">{{$value->tenloai}}</a></li>         
+                                            @endforeach
                                         </ul>
                                     </li>
                                     <li><a href="{{route('frontend.sanpham.nu',['all'])}}">Nữ</a>
                                         <ul class="submenu" style="width: 200px;">
-                                            <li><a href="{route('frontend.sanpham.nam',['dong-ho-pin'])}}">Đồng đồ pin</a></li>
-                                            <li><a href="{route('frontend.sanpham.nam',['dong-ho-co'])}}">Đồng đồ cơ</a></li>
-                                            <li><a href="{route('frontend.sanpham.nam',['dong-ho-thong-minh'])}}">Đồng đồ thông minh</a></li>
+                                           
+                                            @foreach($loai as $value)
+                                                <li><a href="{{route('frontend.sanpham.nu',[$value->tenloai_slug])}}">{{$value->tenloai}}</a></li>         
+                                            @endforeach
                                         </ul>
                                     </li>
                                     <li><a href="{{route('frontend.thuonghieu',['all'])}}">Thương hiệu</a>
@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
-                                        <p>Asorem ipsum adipolor sdit amet, consectetur adipisicing elitcf sed do eiusmod tem.</p>
+                                        <p>Cửa hàng chúng tôi chuyên kinh doanh các loại đồ hồng có mặt trên thới giới. Cá nhân hóa theo từng yêu cầu của khách hàng</p>
                                 </div>
                                 </div>
                             </div>
@@ -165,10 +165,9 @@
                             <div class="footer-tittle">
                                 <h4>New Products</h4>
                                 <ul>
-                                    <li><a href="#">Woman Cloth</a></li>
-                                    <li><a href="#">Fashion Accessories</a></li>
-                                    <li><a href="#"> Man Accessories</a></li>
-                                    <li><a href="#"> Rubber made Toys</a></li>
+                                    <li><a href="{{route('frontend.sanpham.nam',['all'])}}">Đồng hồ nam</a></li>
+                                    <li><a href="{{route('frontend.sanpham.nu',['all'])}}">Đồng hồ nữ</a></li>
+                                    <li><a href="{{route('frontend.thuonghieu',['all'])}}">Thương hiệu</a></li>
                                 </ul>
                             </div>
                         </div>

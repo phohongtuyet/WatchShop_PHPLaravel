@@ -63,18 +63,15 @@
                                     <button type="submit" value="submit" class="btn_3">
                                         đăng nhập
                                     </button>
-                                    <a class="lost_pass" href="#">Quên mật khẩu?</a>
-                                </div>
-                                <div class="row g-3 ">
-                                    <div class="col">
-                                        <a  class="btn_3" href="{{ route('google.login') }}"><i class="ion-social-googleplus"></i>Google</a>
-                                    </div>
-                                    <div class="col">
-                                        <a  class="btn_3" href="#"><i class="ion-social-googleplus"></i>Facebook</a>
-                                    </div>
-                                </div>
-                               
+                                    <a class="lost_pass" href="{{ route('password.request') }}">Quên mật khẩu?</a>
+                                </div>                                                    
                             </form>
+                            <div class="col-md-12 form-group list_none d-flex justify-content-center">
+                                <ul class="d-flex justify-content-evenly">
+                                    <li class="mr-3"><a href="" class="genric-btn info-border radius"><i class="fab fa-facebook"></i> Facebook</a></li>
+                                    <li><a href="{{ route('google.login') }}" class="genric-btn info-border radius"><i class="fab fa-google-plus-g"></i>  Google     </a></li>
+                                </ul>   
+                           </div>
                         </div>
                     </div>
                 </div>

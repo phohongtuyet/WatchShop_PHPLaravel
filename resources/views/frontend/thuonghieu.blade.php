@@ -24,7 +24,7 @@
                         <div class="error-content">
                             <h3>Xin lỗi về sự bất tiện</h3>
                             <p>             
-                                Hiện tại chưa có sản phẩm thuộc thương hiệu <strong> {{ $session_title}} </strong>. 
+                                Hiện tại chưa có sản phẩm thuộc <strong> {{ $session_title}} </strong>. 
                             Bạn có thể <a href="{{route('frontend')}}" class="genric-btn success medium circle">trở lại trang chủ</a> để xem sản phẩm khác.
                             </p>                      
                         </div>         
