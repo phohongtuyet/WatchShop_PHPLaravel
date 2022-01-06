@@ -29,7 +29,7 @@ class HomeController extends Controller
         $sanpham = SanPham::select( 'sanpham.*',
         DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
         ->where('sanpham.hienthi',1)
-        ->where('sanpham.soluong','>',1)
+        ->where('sanpham.soluong','>',0)
         ->paginate(9);
 
         return view('frontend.index', compact('sanpham'));
@@ -95,7 +95,7 @@ class HomeController extends Controller
         $sanpham = SanPham::select( 'sanpham.*',
         DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
         ->where('sanpham.hienthi',1)
-        ->where('sanpham.soluong','>',1)
+        ->where('sanpham.soluong','>',0)
         ->paginate(9);
           
         return view('frontend.sanpham', compact('sanpham'));
@@ -114,7 +114,7 @@ class HomeController extends Controller
                         ->groupBy('sanpham.id')
                         ->orderBy('tongsoluongban', 'desc')
                         ->where('hienthi',1)
-                        ->where('sanpham.soluong','>',1)
+                        ->where('sanpham.soluong','>',0)
                         ->paginate(9);
 
             session()->put('select1', 'BUY');
@@ -124,7 +124,7 @@ class HomeController extends Controller
             $sanpham = SanPham::select( 'sanpham.*',DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
                     ->orderBy('created_at', 'desc')
                     ->where('hienthi',1)
-                    ->where('sanpham.soluong','>',1)
+                    ->where('sanpham.soluong','>',0)
                     ->paginate(9);
 
             session()->put('select1', 'NEW');
@@ -134,7 +134,7 @@ class HomeController extends Controller
             $sanpham = SanPham::select( 'sanpham.*',DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
                         ->orderBy('dongia', 'asc')
                         ->where('hienthi',1)
-                        ->where('sanpham.soluong','>',1)
+                        ->where('sanpham.soluong','>',0)
                         ->paginate(9);
 
             session()->put('select1', 'ASC');
@@ -144,7 +144,7 @@ class HomeController extends Controller
             $sanpham = SanPham::select( 'sanpham.*',DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
                 ->orderBy('dongia', 'desc')
                 ->where('hienthi',1)
-                ->where('sanpham.soluong','>',1)
+                ->where('sanpham.soluong','>',0)
                 ->paginate(9);
 
             session()->put('select1', 'DESC');
@@ -153,7 +153,7 @@ class HomeController extends Controller
         {
             $sanpham = SanPham::select( 'sanpham.*',DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
             ->where('hienthi',1)
-            ->where('sanpham.soluong','>',1)
+            ->where('sanpham.soluong','>',0)
             ->paginate(9);
 
 
@@ -170,7 +170,7 @@ class HomeController extends Controller
             $sanpham = SanPham::select( 'sanpham.*',
              DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
              ->where('sanpham.hienthi',1)
-             ->where('sanpham.soluong','>',1)
+             ->where('sanpham.soluong','>',0)
              ->paginate(12);
 
             session()->put('select', '12');
@@ -180,7 +180,7 @@ class HomeController extends Controller
             $sanpham = SanPham::select( 'sanpham.*',
              DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
              ->where('sanpham.hienthi',1)
-             ->where('sanpham.soluong','>',1)
+             ->where('sanpham.soluong','>',0)
              ->paginate(15);
 
             session()->put('select', '15');
@@ -190,7 +190,7 @@ class HomeController extends Controller
             $sanpham = SanPham::select( 'sanpham.*',
             DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
             ->where('sanpham.hienthi',1)
-            ->where('sanpham.soluong','>',1)
+            ->where('sanpham.soluong','>',0)
             ->paginate(18);
 
             session()->put('select', '18');
@@ -200,7 +200,7 @@ class HomeController extends Controller
             $sanpham = SanPham::select( 'sanpham.*',
              DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
              ->where('sanpham.hienthi',1)
-             ->where('sanpham.soluong','>',1)
+             ->where('sanpham.soluong','>',0)
              ->paginate(21);   
 
             session()->put('select', '21');
@@ -210,7 +210,7 @@ class HomeController extends Controller
             $sanpham = SanPham::select( 'sanpham.*',
              DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
              ->where('sanpham.hienthi',1)
-             ->where('sanpham.soluong','>',1)
+             ->where('sanpham.soluong','>',0)
              ->paginate(9);
              
             session()->put('select', '9');
@@ -453,7 +453,7 @@ class HomeController extends Controller
         {
             $sanpham = SanPham::select( 'sanpham.*',
             DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-            ->where('sanpham.hienthi',1)->where('gioitinh',1)
+            ->where('sanpham.hienthi',1)->where('sanpham.soluong','>',0)->where('gioitinh',1)
             ->paginate(9);
             $session_title = "Nam";
             return view('frontend.thuonghieu',compact('sanpham','session_title'));
@@ -464,7 +464,7 @@ class HomeController extends Controller
             $loai = Loai::where('tenloai_slug',$all)->first();
             $sanpham = SanPham::select( 'sanpham.*',
                 DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-                ->where('sanpham.hienthi',1)->where('loai_id',$loai->id)->where('gioitinh',1)
+                ->where('sanpham.hienthi',1)->where('sanpham.soluong','>',0)->where('loai_id',$loai->id)->where('gioitinh',1)
                 ->paginate(9);
             $session_title = $loai->tenloai ;
             return view('frontend.thuonghieu',compact('sanpham','session_title'));
@@ -479,7 +479,7 @@ class HomeController extends Controller
         {
             $sanpham = SanPham::select( 'sanpham.*',
             DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-            ->where('sanpham.hienthi',1)->where('gioitinh',2)
+            ->where('sanpham.hienthi',1)->where('sanpham.soluong','>',0)->where('gioitinh',2)
             ->paginate(9);
             $session_title = "Nữ";
             return view('frontend.thuonghieu',compact('sanpham','session_title'));
@@ -490,7 +490,7 @@ class HomeController extends Controller
             $loai = Loai::where('tenloai_slug',$all)->first();
             $sanpham = SanPham::select( 'sanpham.*',
                 DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-                ->where('sanpham.hienthi',1)->where('loai_id',$loai->id)->where('gioitinh',2)
+                ->where('sanpham.hienthi',1)->where('sanpham.soluong','>',0)->where('loai_id',$loai->id)->where('gioitinh',2)
                 ->paginate(9);
             $session_title = $loai->tenloai;
             return view('frontend.thuonghieu',compact('sanpham','session_title'));

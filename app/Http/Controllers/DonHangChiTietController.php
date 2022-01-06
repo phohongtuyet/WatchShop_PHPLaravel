@@ -60,6 +60,6 @@ class DonHangChiTietController extends Controller
         $orm = DonHang_ChiTiet::find($id);
         $orm->delete();
 
-        return redirect()->route('admin.donhang.chitiet')->with('id',$id);
+        return redirect()->route('admin.donhang.chitiet',$id);
     }
 }

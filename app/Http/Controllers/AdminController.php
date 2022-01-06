@@ -34,6 +34,7 @@ class AdminController extends Controller
                         DB::raw('(select donhang_chitiet.dongiaban from donhang_chitiet limit 1) as dongiaban')
                         )
                 ->whereBetween('donhang.created_at', [$date->format('Y-m-d')." 00:00:00", $date->format('Y-m-d')." 23:59:59"])
+                ->where('donhang.tinhtrang_id',10)
                 ->groupBy('sanpham.id')
                 ->get();
             return view('admin.index',compact('donhang','user','sanpham','doanhthu'));

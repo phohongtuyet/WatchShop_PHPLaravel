@@ -60,16 +60,117 @@
                             @csrf
                                 <div class="select-itms">
                                     <select name="select" id="select1" onchange="if(this.value != 0) { this.form.submit(); }">
-                                        <option value="1" {{ session('select') == 'moi' ? 'selected' : '' }}> Mới</option>
-                                        <option value="2" {{ session('select') == 'dangxacnhan' ? 'selected' : '' }}>Đang xác nhận / Đã xác nhận</option>
-                                        <option value="3" {{ session('select') == 'dahuy' ? 'selected' : '' }}>Đã hủy</option>
-                                        <option value="4" {{ session('select') == 'dangdonggoi' ? 'selected' : '' }}>Đang đóng gói sản phẩm</option>
-                                        <option value="5" {{ session('select') == 'chodinhan' ? 'selected' : '' }}>Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
-                                        <option value="6" {{ session('select') == 'dangchuyen' ? 'selected' : '' }}>Đang chuyển</option>
-                                        <option value="7" {{ session('select') == 'thatbai' ? 'selected' : '' }}>Thất bại </option>
-                                        <option value="8" {{ session('select') == 'dangchuyenhoan' ? 'selected' : '' }}>Đang chuyển hoàn</option>
-                                        <option value="9" {{ session('select') == 'dachuyenhoan' ? 'selected' : '' }}>Đã chuyển hoàn</option>
-                                        <option value="10" {{ session('select') == 'thanhcong' ? 'selected' : '' }}>Thành công</option>
+                                        @if($value->tinhtrang_id == 1)
+                                            <option value="1" selected> Mới</option>
+                                            <option value="2" >Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" >Đã hủy</option>
+                                            <option value="4" >Đang đóng gói sản phẩm</option>
+                                            <option value="5" >Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" >Đang chuyển</option>
+                                            <option value="7" >Thất bại </option>
+                                            <option value="8" >Đang chuyển hoàn</option>
+                                            <option value="9" >Đã chuyển hoàn</option>
+                                            <option value="10">Thành công</option>
+                                        @elseif($value->tinhtrang_id == 2)
+                                            <option value="1" > Mới</option>
+                                            <option value="2" selected>Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" >Đã hủy</option>
+                                            <option value="4" >Đang đóng gói sản phẩm</option>
+                                            <option value="5" >Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" >Đang chuyển</option>
+                                            <option value="7" >Thất bại </option>
+                                            <option value="8" >Đang chuyển hoàn</option>
+                                            <option value="9" >Đã chuyển hoàn</option>
+                                            <option value="10">Thành công</option>
+                                        @elseif($value->tinhtrang_id == 3)
+                                            <option value="1" > Mới</option>
+                                            <option value="2" >Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" selected>Đã hủy</option>
+                                            <option value="4" >Đang đóng gói sản phẩm</option>
+                                            <option value="5" >Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" >Đang chuyển</option>
+                                            <option value="7" >Thất bại </option>
+                                            <option value="8" >Đang chuyển hoàn</option>
+                                            <option value="9" >Đã chuyển hoàn</option>
+                                            <option value="10">Thành công</option>
+                                        @elseif($value->tinhtrang_id == 4)
+                                            <option value="1" > Mới</option>
+                                            <option value="2" >Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" >Đã hủy</option>
+                                            <option value="4" selected>Đang đóng gói sản phẩm</option>
+                                            <option value="5" >Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" >Đang chuyển</option>
+                                            <option value="7" >Thất bại </option>
+                                            <option value="8" >Đang chuyển hoàn</option>
+                                            <option value="9" >Đã chuyển hoàn</option>
+                                            <option value="10">Thành công</option>
+                                        @elseif($value->tinhtrang_id == 5)
+                                            <option value="1" > Mới</option>
+                                            <option value="2" >Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" >Đã hủy</option>
+                                            <option value="4" >Đang đóng gói sản phẩm</option>
+                                            <option value="5" selected>Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" >Đang chuyển</option>
+                                            <option value="7" >Thất bại </option>
+                                            <option value="8" >Đang chuyển hoàn</option>
+                                            <option value="9" >Đã chuyển hoàn</option>
+                                            <option value="10">Thành công</option>
+                                        @elseif($value->tinhtrang_id == 6)
+                                            <option value="1" > Mới</option>
+                                            <option value="2" >Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" >Đã hủy</option>
+                                            <option value="4" >Đang đóng gói sản phẩm</option>
+                                            <option value="5" >Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" selected>Đang chuyển</option>
+                                            <option value="7" >Thất bại </option>
+                                            <option value="8" >Đang chuyển hoàn</option>
+                                            <option value="9" >Đã chuyển hoàn</option>
+                                            <option value="10">Thành công</option>
+                                        @elseif($value->tinhtrang_id == 7)
+                                            <option value="1" > Mới</option>
+                                            <option value="2" >Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" >Đã hủy</option>
+                                            <option value="4" >Đang đóng gói sản phẩm</option>
+                                            <option value="5" >Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" >Đang chuyển</option>
+                                            <option value="7" selected>Thất bại </option>
+                                            <option value="8" >Đang chuyển hoàn</option>
+                                            <option value="9" >Đã chuyển hoàn</option>
+                                            <option value="10">Thành công</option>
+                                        @elseif($value->tinhtrang_id == 8)
+                                            <option value="1" > Mới</option>
+                                            <option value="2" >Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" >Đã hủy</option>
+                                            <option value="4" >Đang đóng gói sản phẩm</option>
+                                            <option value="5" >Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" >Đang chuyển</option>
+                                            <option value="7" >Thất bại </option>
+                                            <option value="8" selected>Đang chuyển hoàn</option>
+                                            <option value="9" >Đã chuyển hoàn</option>
+                                            <option value="10">Thành công</option>
+                                        @elseif($value->tinhtrang_id == 9)
+                                            <option value="1" > Mới</option>
+                                            <option value="2" >Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" >Đã hủy</option>
+                                            <option value="4" >Đang đóng gói sản phẩm</option>
+                                            <option value="5" >Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" >Đang chuyển</option>
+                                            <option value="7" >Thất bại </option>
+                                            <option value="8" >Đang chuyển hoàn</option>
+                                            <option value="9" selected>Đã chuyển hoàn</option>
+                                            <option value="10">Thành công</option>
+                                        @elseif($value->tinhtrang_id == 10)
+                                            <option value="1" > Mới</option>
+                                            <option value="2" >Đang xác nhận / Đã xác nhận</option>
+                                            <option value="3" >Đã hủy</option>
+                                            <option value="4" >Đang đóng gói sản phẩm</option>
+                                            <option value="5" >Chờ đi nhận / Đang đi nhận / Đã nhận hàng </option>
+                                            <option value="6" >Đang chuyển</option>
+                                            <option value="7" >Thất bại </option>
+                                            <option value="8" >Đang chuyển hoàn</option>
+                                            <option value="9" >Đã chuyển hoàn</option>
+                                            <option value="10" selected>Thành công</option>        
+                                        @endif
                                     </select>
                                 </div>
                             </form>                           

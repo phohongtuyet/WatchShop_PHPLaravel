@@ -61,11 +61,7 @@
                         @elseif($sanpham->gioitinh == 2)
                             <option value="1" >nam</option>
                             <option value="2" selected>nu</option>
-                            <option value="3" >unsex</option>                        
-                        @else
-                            <option value="1" >nam</option>
-                            <option value="2" >nu</option>
-                            <option value="3" selected>unsex</option>                       
+                            <option value="3" >unsex</option>                                                               
                         @endif
                     </select>
                     @error('gioitinh')

@@ -27,7 +27,8 @@ class DonHangController extends Controller
     public function getDanhSachNgay()
     {
         $date = Carbon::today();//lay ngay hien tai
-        $donhang = DonHang::whereBetween('donhang.created_at', [$date->format('Y-m-d')." 00:00:00", $date->format('Y-m-d')." 23:59:59"])->get();
+        $donhang = DonHang::whereBetween('donhang.created_at', [$date->format('Y-m-d')." 00:00:00", $date->format('Y-m-d')." 23:59:59"])
+                    ->orderBy('created_at', 'desc')->get();
         return view('admin.donhang.danhsach', compact('donhang'));
     }
 
@@ -39,12 +40,10 @@ class DonHangController extends Controller
     
     public function getThem()
     {
-
     }
     
     public function postThem(Request $request)
-    {
-       
+    {   
     }
     
     public function getSua($id)
@@ -74,92 +73,82 @@ class DonHangController extends Controller
     public function getXoa($id)
     {
         $orm = DonHang::find($id);
+        
+        $chitiet = DonHang_ChiTiet::where('donhang_id', $orm->id)->get();
+        foreach($chitiet as $value)
+        {
+            $value->delete();
+        }
+
         $orm->delete();
-        
-        $chitiet = DonHang_ChiTiet::where('donhang_id', $orm->id)->first();
-        $chitiet->delete();
-        
-        return redirect()->route('donhang');
+
+        return redirect()->route('admin.donhang');
     }
 
     public function postTrangThai(Request $request, $id)
     {
         $orm = DonHang::find($id);
+        
+            if($request->select == 10 || $request->select1 == 10 )
+            {
+                $orm->tinhtrang_id = 10;
+                $orm->save();
 
-        if($request->select == 10)
-        {
-            $orm->tinhtrang_id = 10;
-            $orm->save();
-
-            session()->put('select', 'thanhcong');
-        }
-        elseif($request->select == 9) 
-        {
-            $orm->tinhtrang_id = 9;
-            $orm->save();
-            session()->put('select', 'dachuyenhoan');
-        }
-        elseif($request->select == 8) 
-        {
-            $orm->tinhtrang_id = 8;
-            $orm->save();
-            session()->put('select', 'dangchuyenhoan');
-        }
-        elseif($request->select == 7) 
-        {
-            $orm->tinhtrang_id = 7;
-            $orm->save();       
-            session()->put('select', 'thatbai');
-        }
-        elseif($request->select == 6) 
-        {
-            $orm->tinhtrang_id = 6;
-            $orm->save();     
-            session()->put('select', 'dangchuyen');
-        }
-        elseif($request->select == 5) 
-        {
-            $orm->tinhtrang_id = 5;
-            $orm->save();  
-            session()->put('select', 'chodinhan');
-        }
-        elseif($request->select == 4) 
-        {
-            $orm->tinhtrang_id = 4;
-            $orm->save();      
-            session()->put('select', 'dangdonggoi');
-        }
-        elseif($request->select == 3) 
-        {
-            $orm->tinhtrang_id = 3;
-            $orm->save();       
-            session()->put('select', 'dahuy');
-        }
-        elseif($request->select == 2) 
-        {
-            $orm->tinhtrang_id = 2;
-            $orm->save();
-            session()->put('select', 'dangxacnhan');
-        }
-        else
-        {
-            $orm->tinhtrang_id = 1;
-            $orm->save();
-            session()->put('select', 'moi');
-        }
-
-        return redirect()->route('admin.donhang');
+            }
+            elseif($request->select == 9 || $request->select1 == 9) 
+            {
+                $orm->tinhtrang_id = 9;
+                $orm->save();
+            }
+            elseif($request->select == 8 || $request->select1 == 8) 
+            {
+                $orm->tinhtrang_id = 8;
+                $orm->save();
+            }
+            elseif($request->select == 7 || $request->select1 == 7) 
+            {
+                $orm->tinhtrang_id = 7;
+                $orm->save();       
+            }
+            elseif($request->select == 6 || $request->select1 == 6) 
+            {
+                $orm->tinhtrang_id = 6;
+                $orm->save();     
+            }
+            elseif($request->select == 5 || $request->select1 == 5)  
+            {
+                $orm->tinhtrang_id = 5;
+                $orm->save();  
+            }
+            elseif($request->select == 4 || $request->select1 == 4) 
+            {
+                $orm->tinhtrang_id = 4;
+                $orm->save();      
+            }
+            elseif($request->select == 3 || $request->select1 == 3) 
+            {
+                $orm->tinhtrang_id = 3;
+                $orm->save();       
+            }
+            elseif($request->select == 2 || $request->select1 == 2) 
+            {
+                $orm->tinhtrang_id = 2;
+                $orm->save();
+            }
+            else
+            {
+                $orm->tinhtrang_id = 1;
+                $orm->save();
+            }
+        
+            if($request->select1)
+                return redirect()->route('admin.donhang.moi');
+            else        
+                return redirect()->route('admin.donhang');
     }
     
-    public function getDoanhThu()
+    public function getDoanhThu(Request $request)
     {
-        return view('admin.donhang.doanhthu');
-    }
-
-    public function postDoanhThu(Request $request)
-    {
-       
- 
         $doanhthu = DonHang_ChiTiet::leftJoin('donhang', 'donhang.id', '=', 'donhang_chitiet.donhang_id')
         ->leftJoin('sanpham', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
         ->select('sanpham.*',
@@ -167,15 +156,20 @@ class DonHangController extends Controller
                   DB::raw('(select donhang_chitiet.dongiaban from donhang_chitiet limit 1) as dongiaban')
                 )
         ->where([
-            ['donhang.created_at', '>=', $request->dateStart],
-            ['donhang.created_at', '<=', $request->dateEnd],
+            //['donhang.created_at', '>=', $request->dateStart],
+            //['donhang.created_at', '<=', $request->dateEnd],
+            ['donhang.tinhtrang_id',10]
         ])
+        ->whereBetween('donhang.created_at', [ Carbon::parse($request->dateStart)->format('Y-m-d')." 00:00:00", Carbon::parse($request->dateEnd)->format('Y-m-d')." 23:59:59"])
         ->groupBy('sanpham.id')
         ->get();
  
         $session_title_dateStart = $request->dateStart;
         $session_title_dateEnd = $request->dateEnd;
         
-        return view('admin.donhang.dsdoanhthu',compact('doanhthu','session_title_dateStart','session_title_dateEnd'));
+        return view('admin.donhang.doanhthu',compact('doanhthu','session_title_dateStart','session_title_dateEnd'));  
     }
+    
+
+    
 }

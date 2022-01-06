@@ -56,7 +56,6 @@
                         <option value="">-- Chọn --</option>
                         <option value="1" >Nam</option>
                         <option value="2" >Nữ</option>
-                        <option value="3" >Unisex</option>
                         
                     </select>
                     @error('gioitinh')

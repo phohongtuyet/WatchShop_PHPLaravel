@@ -199,8 +199,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::get('/donhang/xoa/{id}', [DonHangController::class, 'getXoa'])->name('donhang.xoa')->middleware('admin');
     Route::get('/donhang/moi', [DonHangController::class, 'getDanhSachDonHangMoi'])->name('donhang.moi')->middleware('nhanvien');
     Route::post('/donhang/trangthai/{id}', [DonHangController::class, 'postTrangThai'])->name('donhang.trangthai')->middleware('nhanvien');
-    Route::get('/donhang/doanhthu', [DonHangController::class, 'getDoanhThu'])->name('donhang.doanhthu')->middleware('nhanvien');
-    Route::post('/donhang/doanhthu', [DonHangController::class, 'postDoanhThu'])->name('donhang.doanhthu')->middleware('nhanvien');
+    Route::get('/donhang/doanhthu', [DonHangController::class, 'getDoanhThu'])->name('donhang.doanhthu')->middleware('admin');
     Route::get('/donhang/ngay', [DonHangController::class, 'getDanhSachNgay'])->name('donhang.ngay')->middleware('admin');
 
     // Quản lý Đơn hàng chi tiết
