@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
 use File;
 use App\Imports\SanPhamImport;
 use App\Exports\SanPhamExport;
+use App\Exports\SanPhamHetExport;
+
 use Excel;
 
 class SanPhamController extends Controller
@@ -49,6 +51,11 @@ class SanPhamController extends Controller
     public function getXuat()
     {
         return Excel::download(new SanPhamExport, 'danh-sach-san-pham.xlsx');
+    }
+
+    public function getXuatSanPhamHet()
+    {
+        return Excel::download(new SanPhamHetExport, 'danh-sach-san-pham-het-hang.xlsx');
     }
 
     public function getThem()

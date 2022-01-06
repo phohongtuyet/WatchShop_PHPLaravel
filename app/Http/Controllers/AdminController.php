@@ -48,4 +48,6 @@ class AdminController extends Controller
 	{
 		return view('errors.403');
 	}
+
+    
 }

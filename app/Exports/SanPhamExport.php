@@ -1,49 +1,24 @@
 <?php
 
 namespace App\Exports;
+
 use App\Models\SanPham;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Support\Facades\DB;
 
-class SanPhamExport implements FromCollection,
-                                WithHeadings,
-                                WithMapping
+class SanPhamExport implements FromView
+                                
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function headings(): array
+    public function view(): View
     {
-        return [
-            'Mã loại',
-            'thuonghieu',
-            'chatlieu',
-            'Tên sản phẩm',
-            'Tên sản phẩm khong dấu',
-            'gioitinh',
-            'Số lượng',
-            'Đơn giá',
-            'Hình ảnh',
-        ];
-    }
-    
-    public function map($row): array
-    {
-        return [
-                $row->loaisanpham_id,
-                $row->thuonghieu_id,
-                $row->chatlieu_id,
-                $row->tensanpham,
-                $row->tensanpham_slug,
-                $row->gioitinh,
-                $row->soluong,
-                $row->dongia,
-        ];
-    }
+        return view('exports.sanpham', [
+            'sanpham' =>  SanPham::select('sanpham.*', 
+                DB::raw('CONCAT(hinhanh,"?",hinhanh) AS hinhanh'))
+                ->join('hinhanh','sanpham.id','=','hinhanh.sanpham_id')
+                ->get()
+        ]);
 
-    public function collection()
-    {
-        return SanPham::all();
     }
 }

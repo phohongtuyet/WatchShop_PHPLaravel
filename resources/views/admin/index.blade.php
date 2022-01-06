@@ -71,7 +71,7 @@
                 <div class="card-header border-0">
                   <h3 class="card-title">Sản phẩm hết hàng</h3>
                   <div class="card-tools">
-                    <a href="#" class="btn btn-tool btn-sm">
+                    <a href="{{route('admin.sanpham.het.xuat')}}" class="btn btn-tool btn-sm">
                       <i class="fas fa-download"></i>
                     </a>
                     <a href="#" class="btn btn-tool btn-sm">
