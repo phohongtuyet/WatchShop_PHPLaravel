@@ -15,6 +15,6 @@ class HinhAnh extends Model
 
     public function SanPham()
     {
-        return $this->hasMany(SanPham::class,'sanpham_id','id');
+        return $this->belongsTo(SanPham::class,'sanpham_id','id');
     }
 }

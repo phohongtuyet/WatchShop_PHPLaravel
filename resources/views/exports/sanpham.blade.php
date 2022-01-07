@@ -1,16 +1,15 @@
 <table>
     <thead>
     <tr>
-        <th class="text-center" width="20">Loại</th>
-        <th width="20">Thương hiệu</th>
-        <th width="20">Chất liệu</th>
+        <th width="15">Loại</th>
+        <th width="15">Thương hiệu</th>
+        <th width="15">Chất liệu</th>
         <th width="30">Tên sản phẩm</th>
         <th width="30">Tên sản phẩm không dấu</th>
-        <th width="20">Giới tính</th>
-        <th width="20">Số lượng </th>
-        <th width="20">Đơn giá</th>
-        <th width="40">Hình ảnh</th>
-
+        <th width="15">Giới tính</th>
+        <th width="15">Số lượng </th>
+        <th width="15">Đơn giá</th>
+        <th width="50">Hình ảnh</th>
     </tr>
     </thead>
     <tbody>
@@ -24,7 +23,19 @@
                 <td>{{ $value->gioitinh }}</td>
                 <td>{{ $value->soluong }}</td>
                 <td>{{ $value->dongia }}</td> 
-                <td>{{ $value->hinhanh }}</td>
+                @php
+                    $chuoi = '';
+                    $arr = array();
+                @endphp
+                @foreach($value->HinhAnh as $chitiet)
+                    @php 
+                        array_push($arr,$chitiet->hinhanh);  
+                    @endphp
+                @endforeach
+                @php 
+                    $chuoi = implode("?", $arr); 
+                @endphp
+                <td>{{ $chuoi }}</td>
             </tr>
         @endforeach
     </tbody>

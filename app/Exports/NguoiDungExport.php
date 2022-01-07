@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 
 class NguoiDungExport implements FromView
 {
@@ -25,8 +26,21 @@ class NguoiDungExport implements FromView
 
     public function view(): View
     {
-        return view('exports.nguoidung', [
-            'invoices' => NguoiDung::query()->where('role', $this->role)->get()        
-        ]);
+        if($this->role == 'user')
+        {
+            return view('exports.khachhang', [
+                'invoices' => NguoiDung::query()->select( 'nguoidung.*',
+                DB::raw('(select donhang.dienthoaigiaohang from donhang where nguoidung_id = nguoidung.id  limit 1) as dienthoaigiaohang'))
+                ->where('role', $this->role)
+                ->get()        
+            ]); 
+        }
+        else
+        {
+            return view('exports.nguoidung', [
+                'invoices' => NguoiDung::query()->where('role', $this->role)->get()        
+            ]);
+        }
+        
     }
 }

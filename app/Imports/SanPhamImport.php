@@ -32,19 +32,19 @@ class SanPhamImport implements ToModel, WithHeadingRow
         */
         
         $sanpham = SanPham::create([
-            'loai_id' => $row['loai_id'],
-            'thuonghieu_id' => $row['thuonghieu_id'],
-            'chatlieu_id' => $row['chatlieu_id'],
-            'tensanpham' => $row['tensanpham'],
-            'tensanpham_slug' => Str::slug($row['tensanpham']),
-            'gioitinh' => $row['gioitinh'],
-            'soluong' => $row['soluong'],
-            'dongia' => $row['dongia'],
+            'loai_id' => $row['loai'],
+            'thuonghieu_id' => $row['thuong_hieu'],
+            'chatlieu_id' => $row['chat_lieu'],
+            'tensanpham' => $row['ten_san_pham'],
+            'tensanpham_slug' => Str::slug($row['ten_san_pham']),
+            'gioitinh' => $row['gioi_tinh'],
+            'soluong' => $row['so_luong'],
+            'dongia' => $row['don_gia'],
         ]);
 
         $spreadsheet = IOFactory::load(request()->file('file_excel'));
         $i = 0;
-        $image = $row['hinhanh'];      
+        $image = $row['hinh_anh'];      
         $path =  explode("?",$image);
         foreach($path as $hinhanh)
         {
