@@ -149,25 +149,30 @@ class DonHangController extends Controller
     
     public function getDoanhThu(Request $request)
     {
-        $doanhthu = DonHang_ChiTiet::leftJoin('donhang', 'donhang.id', '=', 'donhang_chitiet.donhang_id')
-        ->leftJoin('sanpham', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
-        ->select('sanpham.*',
-                  DB::raw('sum(donhang_chitiet.soluongban) AS tongsoluongban'),
-                  DB::raw('(select donhang_chitiet.dongiaban from donhang_chitiet limit 1) as dongiaban')
-                )
-        ->where([
-            //['donhang.created_at', '>=', $request->dateStart],
-            //['donhang.created_at', '<=', $request->dateEnd],
-            ['donhang.tinhtrang_id',10]
-        ])
-        ->whereBetween('donhang.created_at', [ Carbon::parse($request->dateStart)->format('Y-m-d')." 00:00:00", Carbon::parse($request->dateEnd)->format('Y-m-d')." 23:59:59"])
-        ->groupBy('sanpham.id')
-        ->get();
- 
-        $session_title_dateStart = $request->dateStart;
-        $session_title_dateEnd = $request->dateEnd;
-        
-        return view('admin.donhang.doanhthu',compact('doanhthu','session_title_dateStart','session_title_dateEnd'));  
+        if($request->dateStart != '' && $request->dateEnd != '')
+        {
+            $doanhthu = DonHang_ChiTiet::leftJoin('donhang', 'donhang.id', '=', 'donhang_chitiet.donhang_id')
+            ->leftJoin('sanpham', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
+            ->select('sanpham.*',
+                      DB::raw('sum(donhang_chitiet.soluongban) AS tongsoluongban'),
+                      DB::raw('(select donhang_chitiet.dongiaban from donhang_chitiet limit 1) as dongiaban')
+                    )
+            ->where([
+                //['donhang.created_at', '>=', $request->dateStart],
+                //['donhang.created_at', '<=', $request->dateEnd],
+                ['donhang.tinhtrang_id',10]
+            ])
+            ->whereBetween('donhang.created_at', [ Carbon::parse($request->dateStart)->format('Y-m-d')." 00:00:00", Carbon::parse($request->dateEnd)->format('Y-m-d')." 23:59:59"])
+            ->groupBy('sanpham.id')
+            ->get();
+     
+            $session_title_dateStart = $request->dateStart;
+            $session_title_dateEnd = $request->dateEnd;
+            
+            return view('admin.donhang.doanhthu',compact('doanhthu','session_title_dateStart','session_title_dateEnd'));  
+        }
+        return view('admin.donhang.doanhthu');  
+
     }
     
 
