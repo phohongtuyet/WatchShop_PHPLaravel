@@ -20,4 +20,9 @@ class BaiViet extends Model
     {
         return $this->belongsTo(NguoiDung::class, 'nguoidung_id', 'id');
     }
+
+    public function ChuDe()
+    {
+        return $this->belongsTo(ChuDe::class, 'chude_id', 'id');
+    }
 }

@@ -50,9 +50,11 @@
                                         </span>
                                     </div>
                                     <p>{{ number_format($sanpham->dongia )}} VNĐ</p>
+                                    
                                 </div>
-                                <div class="form-group mt-2 ">
-                                    <button type="submit" class="button button-contactForm btn_1 boxed-btn">add to cart  </button>
+                                
+                                <div class="form-group mt-3 "style="margin-left: -41px;">
+                                    <button type="submit" class="button button-contactForm btn_1 boxed-btn">Thêm vào giỏ hàng   </button>
                                 </div>
                             </form>
                         </div>

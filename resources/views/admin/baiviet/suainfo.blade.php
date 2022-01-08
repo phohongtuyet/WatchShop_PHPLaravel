@@ -7,6 +7,18 @@
     <form action="{{ route('admin.baiviet.sua.info',['id' => $baiviet -> id]) }}" method="post">
         @csrf
         <div class="mb-3">
+            <label class="form-label" for="chude_id">Chủ đề</label>
+            <select class="form-control @error('chude_id') is-invalid @enderror" name="chude_id" id="chude_id" require> 
+                <option value="">-- Chọn chủ đề --</option>
+                @foreach($chude as $value)
+                    <option value="{{ $value->id }}" {{ $baiviet->chude_id == $value->id ? 'selected' : '' }}>{{ $value->tenchude}}</option>
+                @endforeach
+            </select>
+            @error('chude_id')
+                <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+            @enderror
+        </div>  
+        <div class="mb-3">
             <label for="tieude" class="form-label  @error('tieude') is-invalid @enderror" value="{{ old('tieude') }}">Tiêu đề   </label>
             <input type="text" class="form-control" id="tieude" name="tieude" value="{{ $baiviet ->tieude }}">
             @error('tieude')

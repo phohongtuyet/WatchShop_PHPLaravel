@@ -16,6 +16,7 @@ class CreateBaiVietsTable extends Migration
         Schema::create('baiviet', function (Blueprint $table) {
             $table->id();
             $table->foreignId('nguoidung_id')->constrained('nguoidung');
+            $table->foreignId('chude_id')->constrained('chude');
             $table->text('tieude');
 			$table->text('tieude_slug');
 			$table->text('tomtat')->nullable();

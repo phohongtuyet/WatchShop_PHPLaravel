@@ -165,6 +165,14 @@
 						</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
+								<a href="{{ route('admin.chude') }}" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Chủ đề</p>
+								</a>
+							</li>										
+						</ul>
+						<ul class="nav nav-treeview">
+							<li class="nav-item">
 								<a href="{{ route('admin.baiviet') }}" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Bài viết  </p>

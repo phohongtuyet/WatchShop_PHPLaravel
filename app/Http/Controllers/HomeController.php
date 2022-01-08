@@ -8,6 +8,7 @@ use App\Models\HinhAnh;
 use App\Models\DonHang;
 use App\Models\DonHang_ChiTiet;
 use App\Models\BaiViet;
+use App\Models\ChuDe;
 use App\Models\BinhLuan;
 use App\Models\ThuongHieu;
 use App\Models\Loai;
@@ -249,15 +250,37 @@ class HomeController extends Controller
         return view('frontend.baiviet_chitiet',compact('baiviet','binhluan'));
     }
 
-    public  function getBaiViet()
+    public  function getBaiViet($chude='')
     {
-        $baiviet = BaiViet::orderBy('created_at', 'desc')
-                ->where([
-                            ['hienthi',1],
-                            ['kiemduyet', 1],
-                        ])
-                ->paginate(5);
-        return view('frontend.baiviet',compact('baiviet'));
+        if(empty($chude)) // rong
+        {
+            $baiviet = BaiViet::orderBy('created_at', 'desc')
+            ->where([
+                        ['hienthi',1],
+                        ['kiemduyet', 1],
+                    ])
+            ->paginate(5);
+            $chude = ChuDe::all();
+            $session_title = 'Tin tức';
+
+            return view('frontend.baiviet',compact('baiviet','chude','session_title'));
+        }
+        else
+        {
+            $machude = ChuDe::where('tenchude_slug',$chude)->first();
+            $baiviet = BaiViet::orderBy('created_at', 'desc')
+                    ->where([
+                                ['hienthi',1],
+                                ['kiemduyet', 1],
+                                ['chude_id',$machude->id]
+                            ])
+                    ->paginate(5);
+            $chude = ChuDe::all();
+            $session_title = $machude->tenchude;
+
+            return view('frontend.baiviet',compact('baiviet','chude','session_title'));
+        }
+        
     }
 
     public function postBinhLuan(Request $request, $tieude_slug)

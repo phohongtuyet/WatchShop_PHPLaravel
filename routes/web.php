@@ -18,6 +18,7 @@ use App\Http\Controllers\ChatLieuController;
 use App\Http\Controllers\HinhAnhController;
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\BinhluanController;
+use App\Http\Controllers\ChuDeController;
 
 
 Auth::routes();
@@ -53,6 +54,7 @@ Route::get('/dat-hang-thanh-cong', [HomeController::class, 'getDatHangThanhCong'
 //Tin tức
 Route::get('/tin-tuc', [HomeController::class, 'getBaiViet'])->name('frontend.baiviet');
 Route::get('/tin-tuc/{tieude_slug}', [HomeController::class, 'getBaiViet_ChiTiet'])->name('frontend.baiviet_chitiet');
+Route::get('/tin-tuc/chude/{chude}', [HomeController::class, 'getBaiViet'])->name('frontend.baiviet_chude');
 
 //Bình luận
 Route::post('/binh-luan/{tieude_slug}', [HomeController::class, 'postBinhLuan'])->name('frontend.binhluan');
@@ -160,6 +162,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::get('/sanpham/OnOffHienThi/{id}', [SanPhamController::class, 'getOnOffHienThi'])->name('sanpham.OnOffHienThi')->middleware('nhanvien');
     Route::get('/sanphamghet/xuat', [SanPhamController::class, 'getXuatSanPhamHet'])->name('sanpham.het.xuat')->middleware('admin');
 
+    // Quản lý chủ đề
+    Route::get('/chude', [ChuDeController::class, 'getDanhSach'])->name('chude')->middleware('nhanvien');
+    Route::get('/chude/them', [ChuDeController::class, 'getThem'])->name('chude.them')->middleware('nhanvien');
+    Route::post('/chude/them', [ChuDeController::class, 'postThem'])->name('chude.them')->middleware('nhanvien');
+    Route::get('/chude/sua/{id}', [ChuDeController::class, 'getSua'])->name('chude.sua')->middleware('nhanvien');
+    Route::post('/chude/sua/{id}', [ChuDeController::class, 'postSua'])->name('chude.sua')->middleware('nhanvien');
+    Route::get('/chude/xoa/{id}', [ChuDeController::class, 'getXoa'])->name('chude.xoa')->middleware('nhanvien');
+    
     // Quản lý bài viết
     Route::get('/baiviet', [BaiVietController::class, 'getDanhSach'])->name('baiviet')->middleware('nhanvien');
     Route::get('/baiviet/them', [BaiVietController::class, 'getThem'])->name('baiviet.them')->middleware('nhanvien');
@@ -184,12 +194,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::get('/binhluan/OnOffDuyet/{id}', [BinhLuanController::class, 'getOnOffDuyet'])->name('binhluan.OnOffDuyet')->middleware('nhanvien');
 
     // Quản lý hình ảnh
-    Route::get('/hinhanh/{tensanpham_slug}', [HinhAnhController::class, 'getDanhSach'])->name('hinhanh')->middleware('admin');
-    Route::get('/hinhanh/them/{tensanpham_slug}', [HinhAnhController::class, 'getThem'])->name('hinhanh.them')->middleware('admin');
-    Route::post('/hinhanh/them/{tensanpham_slug}', [HinhAnhController::class, 'postThem'])->name('hinhanh.them')->middleware('admin');
-    Route::get('/hinhanh/sua/{id}', [HinhAnhController::class, 'getSua'])->name('hinhanh.sua')->middleware('admin');
-    Route::post('/hinhanh/sua/{id}', [HinhAnhController::class, 'postSua'])->name('hinhanh.sua')->middleware('admin');
-    Route::get('/hinhanh/xoa/{id}', [HinhAnhController::class, 'getXoa'])->name('hinhanh.xoa')->middleware('admin');
+    Route::get('/hinhanh/{tensanpham_slug}', [HinhAnhController::class, 'getDanhSach'])->name('hinhanh')->middleware('nhanvien');
+    Route::get('/hinhanh/them/{tensanpham_slug}', [HinhAnhController::class, 'getThem'])->name('hinhanh.them')->middleware('nhanvien');
+    Route::post('/hinhanh/them/{tensanpham_slug}', [HinhAnhController::class, 'postThem'])->name('hinhanh.them')->middleware('nhanvien');
+    Route::get('/hinhanh/sua/{id}', [HinhAnhController::class, 'getSua'])->name('hinhanh.sua')->middleware('nhanvien');
+    Route::post('/hinhanh/sua/{id}', [HinhAnhController::class, 'postSua'])->name('hinhanh.sua')->middleware('nhanvien');
+    Route::get('/hinhanh/xoa/{id}', [HinhAnhController::class, 'getXoa'])->name('hinhanh.xoa')->middleware('nhanvien');
 
     // Quản lý Đơn hàng
     Route::get('/donhang', [DonHangController::class, 'getDanhSach'])->name('donhang')->middleware('nhanvien');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BaiViet;
+use App\Models\ChuDe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -49,7 +50,8 @@ class BaiVietController extends Controller
 
     public function getThem()
     {
-        return view('admin.baiviet.them');
+        $chude = ChuDe::all();
+        return view('admin.baiviet.them',compact('chude'));
     }
 
     public function postThem(Request $request)
@@ -57,15 +59,19 @@ class BaiVietController extends Controller
         $this->validate($request, [
             'tieude' => ['required','string', 'unique:baiviet'],
             'noidung' => ['required'],
+            'chude_id' => ['required'],
+
         ],
         $messages = [
             'tieude.required' => 'Tiêu đề không được bỏ trống.',
             'noidung.required' => 'Nội dung  không được bỏ trống.',
+            'chude_id.required' => 'Chưa chọn chủ đề.',
 
         ]);
            
         $orm = new BaiViet();
         $orm->nguoidung_id = Auth::user()->id;
+        $orm->chude_id = $request->chude_id;
         $orm->tieude = $request->tieude;
         $orm->tieude_slug = Str::slug($request->tieude, '-');
         $orm->tomtat = $request->tomtat;
@@ -78,7 +84,8 @@ class BaiVietController extends Controller
     public function getSua($id)
     {
         $baiviet = BaiViet::find($id);
-        return view('admin.baiviet.sua', compact('baiviet'));
+        $chude = ChuDe::all();
+        return view('admin.baiviet.sua', compact('baiviet','chude'));
     }
 
     public function postSua(Request $request, $id)
@@ -86,15 +93,19 @@ class BaiVietController extends Controller
         $this->validate($request, [
             'tieude' => ['required', 'string', 'unique:baiviet,tieude,'.$id],
             'noidung' => ['required'],
+            'chude_id' => ['required'],
+
         ],
         $messages = [
             'tieude.required' => 'Tiêu đề không được bỏ trống.',
             'noidung.required' => 'Nội dung  không được bỏ trống.',
+            'chude_id.required' => 'Chưa chọn chủ đề.',
 
         ]);
            
         $orm = BaiViet::find($id);
         $orm->nguoidung_id = Auth::user()->id;
+        $orm->chude_id = $request->chude_id;
         $orm->tieude = $request->tieude;
         $orm->tieude_slug = Str::slug($request->tieude, '-');
         $orm->tomtat = $request->tomtat;
@@ -120,7 +131,9 @@ class BaiVietController extends Controller
     public function getSuaBaiVietInfo($id)
     {
         $baiviet = BaiViet::find($id);
-        return view('admin.baiviet.suainfo', compact('baiviet'));
+        $chude = ChuDe::all();
+
+        return view('admin.baiviet.suainfo', compact('baiviet','chude'));
     }
 
     public function postSuaBaiVietInfo(Request $request, $id)
@@ -128,15 +141,19 @@ class BaiVietController extends Controller
         $this->validate($request, [
             'tieude' => ['required', 'string', 'unique:baiviet,tieude,'.$id],
             'noidung' => ['required'],
+            'chude_id' => ['required'],
+
         ],
         $messages = [
             'tieude.required' => 'Tiêu đề không được bỏ trống.',
             'noidung.required' => 'Nội dung  không được bỏ trống.',
+            'chude_id.required' => 'Chưa chọn chủ đề.',
 
         ]);
            
         $orm = BaiViet::find($id);
         $orm->nguoidung_id = Auth::user()->id;
+        $orm->chude_id = $request->chude_id;
         $orm->tieude = $request->tieude;
         $orm->tieude_slug = Str::slug($request->tieude, '-');
         $orm->tomtat = $request->tomtat;
