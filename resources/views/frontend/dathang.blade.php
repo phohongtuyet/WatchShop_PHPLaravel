@@ -83,34 +83,43 @@
               <form id="checkoutform" class="row contact_form" action="{{ route('frontend.dathang') }}" method="post" novalidate="novalidate" >
               @csrf
                 <div class="col-md-12 form-group p_star">
-                  <input type="text" class="form-control" name="name" placeholder="Họ và tên *" value="{{ Auth::user()->name ?? '' }}" required />
+                  <input type="text" class="form-control @error('nguoidung_id') is-invalid @enderror" name="name" placeholder="Họ và tên *" value="{{ Auth::user()->name ?? '' }}" required />
+                  @error('nguoidung_id')
+                      <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                  @enderror
                 </div>
+
                 <div class="col-md-12 form-group p_star">
-                  <input type="text" class="form-control" name="diachigiaohang" placeholder="Địa chỉ giao hàng *" required />
+                  <input type="text" class="form-control @error('diachigiaohang') is-invalid @enderror" name="diachigiaohang" placeholder="Địa chỉ giao hàng *" required />
+                  @error('diachigiaohang')
+                      <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                  @enderror
                 </div>
+
                 <div class="col-md-6 form-group p_star">
-                  <input type="text" class="form-control" name="dienthoaigiaohang" placeholder="Điện thoại *" required />
+                  <input type="text" class="form-control @error('dienthoaigiaohang') is-invalid @enderror" name="dienthoaigiaohang" placeholder="Điện thoại *" required />
+                  @error('dienthoaigiaohang')
+                      <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                  @enderror
                 </div>
+
                 <div class="col-md-6 form-group p_star">
-                  <input type="text" class="form-control" name="email" placeholder="Địa chỉ Email *" value="{{ Auth::user()->email ?? '' }}" required />
-                </div>                   
-                <div class="col-md-12 form-group">
-                  <div class="creat_account">
-                    <input type="checkbox" id="f-option2" name="selector" />
-                    <label for="f-option2">Tạo một tài khoản?</label>
-                  </div>
-                </div>
+                  <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Địa chỉ Email *" value="{{ Auth::user()->email ?? '' }}" required />
+                  @error('email')
+                      <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                  @enderror
+                </div>   
+
                 <div class="col-md-12 form-group">
                   <div class="creat_account">
                     <h3>Chi tiết vận chuyển</h3>
-                    <input type="checkbox" id="f-option3" name="selector" />
-                    <label for="f-option3">Gửi đến một địa chỉ khác?</label>
-                  </div>
-                  <textarea class="form-control" name="message" id="message" rows="1"
-                    placeholder="Order Notes"></textarea>
+                    </div>
+                  <textarea class="form-control" name="chitietgiaohang" id="message" rows="1"
+                    placeholder="Ghi chú"></textarea>
                 </div>
               </form>
             </div>
+
             <div class="col-lg-4">
               <div class="order_box">
                 <h2>Đơn hàng của bạn </h2>
@@ -141,34 +150,7 @@
                     </a>
                   </li>                 
                 </ul>
-                <div class="payment_item">
-                  <div class="radion_btn">
-                    <input type="radio" id="f-option5" name="selector" />
-                      <label for="f-option5">Check payments</label>
-                    <div class="check"></div>
-                  </div>
-                  <p>
-                    Please send a check to Store Name, Store Street, Store Town,
-                    Store State / County, Store Postcode.
-                  </p>
-                </div>
-                <div class="payment_item active">
-                  <div class="radion_btn">
-                    <input type="radio" id="f-option6" name="selector" />
-                    <label for="f-option6">Paypal </label>
-                    <img src="img/product/single-product/card.jpg" alt="" />
-                    <div class="check"></div>
-                  </div>
-                  <p>
-                    Please send a check to Store Name, Store Street, Store Town,
-                    Store State / County, Store Postcode.
-                  </p>
-                </div>
-                <div class="creat_account">
-                  <input type="checkbox" id="f-option4" name="selector" />
-                  <label for="f-option4">I’ve read and accept the </label>
-                  <a href="#">terms & conditions*</a>
-                </div>
+              
                 <a class="btn_3" href="{{ route('frontend.dathang') }}"
                     onclick="event.preventDefault();document.getElementById('checkoutform').submit();"
                     class="btn btn-fill-out btn-block">Tiến hành đặt hàng</a>

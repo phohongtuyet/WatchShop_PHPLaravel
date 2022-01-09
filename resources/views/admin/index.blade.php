@@ -51,13 +51,13 @@
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-danger">
                     <div class="inner">
-                    <h3>65</h3>
-                    <p>Số lượng khách truy cập </p>
+                    <h3>{{ $binhluan->count() }}</h3>
+                    <p>Bình luân</p>
                     </div>
                     <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Xem thêm  <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{route('admin.binhluan.danhsach')}}" class="small-box-footer">Xem thêm  <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div> 

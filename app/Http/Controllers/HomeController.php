@@ -406,7 +406,19 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             'diachigiaohang' => ['required', 'max:255'],
-            'dienthoaigiaohang' => ['required', 'max:255'],
+            'dienthoaigiaohang' => ['required','regex:/(84|0[3|5|7|8|9])+([0-9]{8})\b/','min:10','numeric'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+
+        ],
+        $messages = [
+            'diachigiaohang.required' => 'Địa chỉ giao hàng không được bỏ trống.',
+            'dienthoaigiaohang.required' => 'Điện thoại giao hàng không được bỏ trống.',
+            'email.required' => 'Địa chỉ email không được bỏ trống.',
+            'email.email' => 'Địa chỉ email không không đúng.',
+            'dienthoaigiaohang.regex' => 'Số điện thoại không đúng.',
+            'dienthoaigiaohang.min' => 'Số điện thoại phải đủ 10 số.',
+            'dienthoaigiaohang.numeric' => 'Số điện thoại phải là số.',
+
         ]);
         
         // Lưu vào đơn hàng
@@ -415,6 +427,7 @@ class HomeController extends Controller
         $dh -> tinhtrang_id = 1;
         $dh -> diachigiaohang = $request->diachigiaohang;
         $dh -> dienthoaigiaohang = $request->dienthoaigiaohang;
+        $dh -> chitietgiaohang = $request->chitietgiaohang;
         $dh ->save();
     
         // Lưu vào đơn hàng chi tiết

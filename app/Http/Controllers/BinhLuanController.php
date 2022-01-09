@@ -15,10 +15,19 @@ class BinhLuanController extends Controller
         $this->middleware('auth');
     }
     
-    public function getDanhSach($tieude_slug)
+    public function getDanhSach($tieude_slug='')
     {        
-        $baiviet = BaiViet::where('tieude_slug',$tieude_slug)->first();
-        $binhluan = BinhLuan::where('baiviet_id',$baiviet->id)->get();
+        if(empty($tieude_slug))
+        {
+            $binhluan = BinhLuan::all();
+
+        }
+        else
+        {
+            $baiviet = BaiViet::where('tieude_slug',$tieude_slug)->first();
+            $binhluan = BinhLuan::where('baiviet_id',$baiviet->id)->get();
+        }
+        
 
         return view('admin.binhluan.danhsach',compact('binhluan'));
     }

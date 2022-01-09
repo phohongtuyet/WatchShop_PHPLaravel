@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DonHang;
 use App\Models\NguoiDung;
 use App\Models\SanPham;
+use App\Models\BinhLuan;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\Carbon;
@@ -37,7 +38,9 @@ class AdminController extends Controller
                 ->where('donhang.tinhtrang_id',10)
                 ->groupBy('sanpham.id')
                 ->get();
-            return view('admin.index',compact('donhang','user','sanpham','doanhthu'));
+
+            $binhluan = BinhLuan::all();
+            return view('admin.index',compact('donhang','user','sanpham','doanhthu','binhluan'));
         }       
         else
             return view('errors.404');

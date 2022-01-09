@@ -105,7 +105,11 @@
                 </table>
                 <div class="checkout_btn_inner float-right">
                     <a class="btn_1" href="{{route('frontend')}}">Tiếp tục mua hàng </a>
-                    <a class="btn_1 checkout_btn_1" href="{{route('frontend.dathang')}}">Tiến hành thanh toán  </a>
+                    @if(!Auth::check())
+                        <a class="btn_1 checkout_btn_1" href="{{route('khachhang.dangnhap')}}"> Đăng nhập để tiếp tục đặt hàng </a>
+                    @else
+                        <a class="btn_1 checkout_btn_1" href="{{route('frontend.dathang')}}">Tiến hành thanh toán  </a>
+                    @endif
                 </div>
             </div>
         </div>

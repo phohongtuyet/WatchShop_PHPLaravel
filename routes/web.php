@@ -185,6 +185,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::get('/baiviet/xoa/info/{id}', [BaiVietController::class, 'getXoaInfo'])->name('baiviet.xoa.info')->middleware('nhanvien');
 
     // Quản lý bình luận
+    Route::get('/binhluan', [BinhLuanController::class, 'getDanhSach'])->name('binhluan.danhsach')->middleware('nhanvien');
     Route::get('/binhluan/{tieude_slug}', [BinhLuanController::class, 'getDanhSach'])->name('binhluan')->middleware('nhanvien');
     Route::get('/binhluan/them', [BinhLuanController::class, 'getThem'])->name('binhluan.them')->middleware('nhanvien');
     Route::post('/binhluan/them', [BinhLuanController::class, 'postThem'])->name('binhluan.them')->middleware('nhanvien');
