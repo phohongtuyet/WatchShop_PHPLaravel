@@ -154,8 +154,7 @@ class DonHangController extends Controller
             $doanhthu = DonHang_ChiTiet::leftJoin('donhang', 'donhang.id', '=', 'donhang_chitiet.donhang_id')
             ->leftJoin('sanpham', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
             ->select('sanpham.*',
-                      DB::raw('sum(donhang_chitiet.soluongban) AS tongsoluongban'),
-                      DB::raw('(select donhang_chitiet.dongiaban from donhang_chitiet limit 1) as dongiaban')
+                      DB::raw('sum(donhang_chitiet.soluongban) AS tongsoluongban')
                     )
             ->where([
                 //['donhang.created_at', '>=', $request->dateStart],

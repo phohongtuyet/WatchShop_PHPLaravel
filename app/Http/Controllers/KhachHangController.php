@@ -25,7 +25,7 @@ class KhachHangController extends Controller
     public function getDonHangHuy($id)
     {
         $orm = DonHang::find($id);
-        $orm->tinhtrang_id = 2 ;
+        $orm->tinhtrang_id = 3 ;
         $orm->save();
 
         $donhang = DonHang::where('nguoidung_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();

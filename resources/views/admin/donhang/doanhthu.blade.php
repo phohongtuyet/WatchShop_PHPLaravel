@@ -37,17 +37,16 @@
     </div>
     @else
     <div class="card-body table-responsive">
-    <p>Doanh thu từ <strong>{{date('d-m-Y', strtotime($session_title_dateStart))}}</strong> đến <strong> {{date('d-m-Y', strtotime($session_title_dateEnd))}}</strong></p>
+    <h4 class="text-center">Doanh thu từ <strong>{{date('d-m-Y', strtotime($session_title_dateStart))}}</strong> đến <strong> {{date('d-m-Y', strtotime($session_title_dateEnd))}}</strong></h4>
 
-            <table class="table table-bordered table-hover table-sm mb-0">
+            <table id="table_id" class="table table-bordered table-hover ">
                 <thead>
                     <tr>
                         <th width="5%">#</th>
-                        <th width="55%">Tên sản phẩm</th>
-                        <th width="10%">Số lượng bán  </th>
-                        <th width="10%">Đơn giá </th>
-                        <th width="20%">Tổng tiền </th>
-
+                        <th width="50%">Tên sản phẩm</th>
+                        <th width="15%">Số lượng bán  </th>
+                        <th width="15%">Đơn giá </th>
+                        <th width="15%">Tổng tiền </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,11 +55,11 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $value->tensanpham }}</td>
-                        <td>{{number_format($value->tongsoluongban) }}</td>
-                        <td>{{number_format($value->dongiaban) }}</td>   
-                        <td>{{number_format($value->tongsoluongban * $value->dongiaban) }}</td>                
+                        <td class="text-center">{{number_format($value->tongsoluongban) }}</td>
+                        <td>{{number_format($value->dongia) }}</td>   
+                        <td>{{number_format($value->tongsoluongban * $value->dongia) }}</td>                
                     </tr>
-                    @php $tong += $value->tongsoluongban * $value->dongiaban; @endphp
+                    @php $tong += $value->tongsoluongban * $value->dongia; @endphp
                     @endforeach
                     <tr >
                         <td colspan="4" class="fw-bold" >Tổng doanh thu</td>

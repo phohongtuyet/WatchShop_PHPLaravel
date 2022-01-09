@@ -18,7 +18,7 @@
     <section class="confirmation_part section_padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-lx-4">
+                <div class="col-lg-3 col-lx-4">
                     <div class="single_confirmation_details">
                         <h4>Menu</h4>
                         <ul class="list-group">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             
-                <div class="col-lg-8 col-lx-4">
+                <div class="col-lg-9 col-lx-4">
                     <div class="single_confirmation_details">
                         <h4>Chào Mừng {{Auth::user()->name}}.</h4> 
                         <table class="table table-borderless">
@@ -63,11 +63,14 @@
                                         <a href="{{ route('khachhang.donhang.chitiet',['id' => $value->id])}}"><i class="fas fa-info-circle"></i></a>
                                     </th>
                                     <th>
-                                        @if($value->tinhtrang_id === 1 or $value->tinhtrang_id === 2 or $value->tinhtrang_id === 3)
-                                            <a href="{{ route('khachhang.donhang.huy',['id' => $value->id])}}" class="genric-btn danger radius">Hủy</a>
+                                        @if($value->tinhtrang_id === 1 or $value->tinhtrang_id === 2 )
+                                            <a href="{{ route('khachhang.donhang.huy',['id' => $value->id])}}" class="genric-btn danger radius" >Hủy</a>
+                                        @elseif($value->tinhtrang_id === 3)
+                                            <a href=""class="genric-btn btn btn-danger disabled radius" >Đã hủy</a>
                                         @else
                                             <a href="{{ route('khachhang.donhang.huy',['id' => $value->id])}}" class="genric-btn disable radius">Hủy</a>
                                         @endif
+
                                     </th>
                                 </tr>
                                 @endforeach

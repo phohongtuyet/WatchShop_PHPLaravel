@@ -23,7 +23,7 @@
                     <h3>
                       @php $tongtien=0; @endphp
                       @foreach($doanhthu as $value)
-                        @php $tongtien += $value->tongsoluongban * $value->dongiaban; @endphp
+                        @php $tongtien += $value->tongsoluongban * $value->dongia; @endphp
                       @endforeach
                       <sup style="font-size: 20px">{{number_format($tongtien)}}</sup></h3>
 
@@ -99,107 +99,7 @@
                 </div>
               </div>          
             </div>
-            
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header border-0">
-                  <div class="d-flex justify-content-between">
-                    <h3 class="card-title">Doanh thu</h3>
-                    <a href="javascript:void(0);">View Report</a>
-                  </div>
-                </div>
-                  <?php
- 
-                  $dataPoints1 = array(
-                    array("label"=> "2006", "y"=> 3289),
-                    array("label"=> "2007", "y"=> 5312),
-                    array("label"=> "2008", "y"=> 11020),
-                    array("label"=> "2009", "y"=> 16854),
-                    array("label"=> "2010", "y"=> 30505),
-                    array("label"=> "2011", "y"=> 52764),
-                    array("label"=> "2012", "y"=> 70513),
-                    array("label"=> "2013", "y"=> 81488),
-                    array("label"=> "2014", "y"=> 88636),
-                    array("label"=> "2015", "y"=> 95092),
-                    array("label"=> "2016", "y"=> 103000)
-                  );
-                  
-                  $dataPoints2 = array(
-                    array("label"=> "2006", "y"=> 1827),
-                    array("label"=> "2007", "y"=> 2098),
-                    array("label"=> "2008", "y"=> 2628),
-                    array("label"=> "2009", "y"=> 3373),
-                    array("label"=> "2010", "y"=> 4951),
-                    array("label"=> "2011", "y"=> 7513),
-                    array("label"=> "2012", "y"=> 12159),
-                    array("label"=> "2013", "y"=> 21992),
-                    array("label"=> "2014", "y"=> 34991),
-                    array("label"=> "2015", "y"=> 50776),
-                    array("label"=> "2016", "y"=> 68000)
-                  );
-                  
-                  
-                  
-                  ?>
-                  
-                  <script>
-                  window.onload = function () {
-                  
-                  var chart = new CanvasJS.Chart("chartContainer", {
-                    title: {
-                      text: "Growth of Solar Photovoltaics"
-                    },
-                    theme: "light2",
-                    animationEnabled: true,
-                    toolTip:{
-                      shared: true,
-                      reversed: true
-                    },
-                    axisY: {
-                      title: "Cumulative Capacity",
-                      suffix: " MW"
-                    },
-                    legend: {
-                      cursor: "pointer",
-                      itemclick: toggleDataSeries
-                    },
-                    data: [
-                      {
-                        type: "stackedColumn",
-                        name: "Europe",
-                        showInLegend: true,
-                        yValueFormatString: "#,##0 MW",
-                        dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
-                      },{
-                        type: "stackedColumn",
-                        name: "Asia-Pacific",
-                        showInLegend: true,
-                        yValueFormatString: "#,##0 MW",
-                        dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
-                      }
-                    ]
-                  });
-                  
-                  chart.render();
-                  
-                  function toggleDataSeries(e) {
-                    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-                      e.dataSeries.visible = false;
-                    } else {
-                      e.dataSeries.visible = true;
-                    }
-                    e.chart.render();
-                  }
-                  
-                  }
-                  </script>
-                  <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-                      
-              </div>
-
-
-            </div>
+          </div>
         </div>
       </div>
     </div>
