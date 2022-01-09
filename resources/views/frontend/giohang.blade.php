@@ -16,8 +16,14 @@
         </div>
     </div>
     <!--================Cart Area =================-->
+   
     <section class="cart_area section_padding">
     <div class="container">
+    @if (session('status'))
+        <div id="AlertBox" class="alert alert-success hide" role="alert">
+            {!! session('status') !!}
+        </div>
+    @endif
         <div class="cart_inner">
             <div class="table-responsive">
                 <table class="table">

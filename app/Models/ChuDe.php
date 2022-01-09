@@ -10,6 +10,9 @@ class ChuDe extends Model
     use HasFactory;
     protected $table = 'chude';
 
+    protected $fillable = [
+		'tenchude', 'tenchude_slug',
+	];
     
     public function BaiViet()
     {

@@ -382,12 +382,16 @@ class HomeController extends Controller
 
     public function getGioHang_Tang($row_id)
     {
-        $row = Cart::get($row_id);
-        if($row->qty < 10)
-        {
-            Cart::update($row_id, $row->qty + 1);
-        }
-        return redirect()->route('frontend.giohang');
+       $row = Cart::get($row_id);
+		$sanpham = SanPham::find($row->id);
+
+		if($row->qty < $sanpham->soluong )
+		{
+			Cart::update($row_id, $row->qty + 1);
+			return redirect()->route('frontend.giohang');
+		}
+		else			
+		return redirect()->route('frontend.giohang')->with("status",'Sản phẩm <strong>'.$sanpham->tensanpham. '</strong> chỉ còn ' .$sanpham->soluong.'');
     }
    
     public function getDatHang()

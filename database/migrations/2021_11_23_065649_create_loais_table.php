@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Loai;
 
 class CreateLoaisTable extends Migration
 {
@@ -21,6 +22,10 @@ class CreateLoaisTable extends Migration
             $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->engine = 'InnoDB';
         });
+        Loai::create(['tenloai' => 'Đồng hồ pin','tenloai_slug' => 'dong-ho-pin']);
+        Loai::create(['tenloai' => 'Đồng hồ cơ','tenloai_slug' => 'dong-ho-co']);
+        Loai::create(['tenloai' => 'Đồng hồ thông minh','tenloai_slug' => 'dong-ho-thong-minh']);
+
     }
 
     /**

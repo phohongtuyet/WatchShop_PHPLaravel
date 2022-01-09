@@ -54,7 +54,7 @@ Route::get('/dat-hang-thanh-cong', [HomeController::class, 'getDatHangThanhCong'
 //Tin tức
 Route::get('/tin-tuc', [HomeController::class, 'getBaiViet'])->name('frontend.baiviet');
 Route::get('/tin-tuc/{tieude_slug}', [HomeController::class, 'getBaiViet_ChiTiet'])->name('frontend.baiviet_chitiet');
-Route::get('/tin-tuc/chude/{chude}', [HomeController::class, 'getBaiViet'])->name('frontend.baiviet_chude');
+Route::get('/tin-tuc/chu-de/{chude}', [HomeController::class, 'getBaiViet'])->name('frontend.baiviet_chude');
 
 //Bình luận
 Route::post('/binh-luan/{tieude_slug}', [HomeController::class, 'postBinhLuan'])->name('frontend.binhluan');
