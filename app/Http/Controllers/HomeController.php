@@ -538,4 +538,66 @@ class HomeController extends Controller
         }
        
     }
+
+    public function getDongHoCapDoi($all = '')
+    {
+        if($all == 'all')
+        {
+            $sanpham = SanPham::select( 'sanpham.*',
+            DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
+            ->where('sanpham.hienthi',1)
+            ->where('sanpham.soluong','>',0)
+            ->where('gioitinh',3)
+            ->paginate(9);
+            $session_title = "Cặp đôi";
+            return view('frontend.thuonghieu',compact('sanpham','session_title'));
+
+        }   
+        else 
+        {
+            $loai = Loai::where('tenloai_slug',$all)->first();
+            $sanpham = SanPham::select( 'sanpham.*',
+                DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
+                ->where('sanpham.hienthi',1)
+                ->where('sanpham.soluong','>',0)
+                ->where('loai_id',$loai->id)
+                ->where('gioitinh',3)
+                ->paginate(9);
+            $session_title = $loai->tenloai;
+            return view('frontend.thuonghieu',compact('sanpham','session_title'));
+
+        }
+       
+    }
+
+    public function getDongHoTreEm($all = '')
+    {
+        if($all == 'all')
+        {
+            $sanpham = SanPham::select( 'sanpham.*',
+            DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
+            ->where('sanpham.hienthi',1)
+            ->where('sanpham.soluong','>',0)
+            ->where('gioitinh',4)
+            ->paginate(9);
+            $session_title = "Trẻ em";
+            return view('frontend.thuonghieu',compact('sanpham','session_title'));
+
+        }   
+        else 
+        {
+            $loai = Loai::where('tenloai_slug',$all)->first();
+            $sanpham = SanPham::select( 'sanpham.*',
+                DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
+                ->where('sanpham.hienthi',1)
+                ->where('sanpham.soluong','>',0)
+                ->where('loai_id',$loai->id)
+                ->where('gioitinh',4)
+                ->paginate(9);
+            $session_title = $loai->tenloai;
+            return view('frontend.thuonghieu',compact('sanpham','session_title'));
+
+        }
+       
+    }
 }

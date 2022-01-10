@@ -33,6 +33,8 @@ Route::post('/san-pham', [HomeController::class, 'postTrang'])->name('frontend.t
 Route::get('/san-pham/{tensanpham_slug}', [HomeController::class, 'getSanPham_ChiTiet'])->name('frontend.sanpham.chitiet');
 Route::get('/dong-ho/nam/{all}', [HomeController::class, 'getDongHoNam'])->name('frontend.sanpham.nam');
 Route::get('/dong-ho/nu/{all}', [HomeController::class, 'getDongHoNu'])->name('frontend.sanpham.nu');
+Route::get('/dong-ho/cap-doi/{all}', [HomeController::class, 'getDongHoCapDoi'])->name('frontend.sanpham.capdoi');
+Route::get('/dong-ho/tre-em/{all}', [HomeController::class, 'getDongHoTreEm'])->name('frontend.sanpham.treem');
 
 //Thương hiệu
 Route::get('/thuong-hieu/{all}', [HomeController::class, 'getThuongHieu'])->name('frontend.thuonghieu');

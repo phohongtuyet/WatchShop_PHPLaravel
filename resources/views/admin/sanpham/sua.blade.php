@@ -55,13 +55,26 @@
                     <select class="form-control @error('gioitinh') is-invalid @enderror" name="gioitinh" id="gioitinh" require> 
                         <option value="">-- Chọn --</option>
                         @if($sanpham->gioitinh == 1)
-                            <option value="1" selected>nam</option>
-                            <option value="2" >nu</option>
-                            <option value="3" >unsex</option>
+                            <option value="1" selected>Nam</option>
+                            <option value="2" >Nữ</option>
+                            <option value="3" >Cặp đôi</option>
+                            <option value="4" >Trẻ em</option>
+
                         @elseif($sanpham->gioitinh == 2)
-                            <option value="1" >nam</option>
-                            <option value="2" selected>nu</option>
-                            <option value="3" >unsex</option>                                                               
+                            <option value="1" >Nam</option>
+                            <option value="2" selected>ữ</option>
+                            <option value="3" >unsex</option>  
+                            <option value="4" >Trẻ em</option>
+                        @elseif($sanpham->gioitinh == 3)
+                            <option value="1" >Nam</option>
+                            <option value="2" >ữ</option>
+                            <option value="3" selected>Cặp đôi</option>  
+                            <option value="4" >Trẻ em</option>
+                        @elseif($sanpham->gioitinh == 4)
+                            <option value="1" >Nam</option>
+                            <option value="2" >Nữ</option>
+                            <option value="3" >Cặp đôi</option>  
+                            <option value="4" selected>Trẻ em</option>
                         @endif
                     </select>
                     @error('gioitinh')

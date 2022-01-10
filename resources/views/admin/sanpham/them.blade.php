@@ -56,7 +56,8 @@
                         <option value="">-- Chọn --</option>
                         <option value="1" >Nam</option>
                         <option value="2" >Nữ</option>
-                        
+                        <option value="3" >Cặp đôi</option>
+                        <option value="4" >Trẻ em</option>
                     </select>
                     @error('gioitinh')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>

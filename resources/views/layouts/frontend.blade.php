@@ -67,6 +67,22 @@
                                             @endforeach
                                         </ul>
                                     </li>
+                                    <li><a href="{{route('frontend.sanpham.capdoi',['all'])}}">Cặp đôi</a>
+                                        <ul class="submenu" style="width: 200px;">
+                                           
+                                            @foreach($loai as $value)
+                                                <li><a href="{{route('frontend.sanpham.nu',[$value->tenloai_slug])}}">{{$value->tenloai}}</a></li>         
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{route('frontend.sanpham.treem',['all'])}}">Trẻ em</a>
+                                        <ul class="submenu" style="width: 200px;">
+                                           
+                                            @foreach($loai as $value)
+                                                <li><a href="{{route('frontend.sanpham.nu',[$value->tenloai_slug])}}">{{$value->tenloai}}</a></li>         
+                                            @endforeach
+                                        </ul>
+                                    </li>
                                     <li><a href="{{route('frontend.thuonghieu',['all'])}}">Thương hiệu</a>
                                         <ul class="submenu" style="width: 500px;">  
                                             <div class="row row-cols-1 row-cols-md-3 g-1">
