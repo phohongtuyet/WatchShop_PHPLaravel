@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 @section('content')
 
-@if(Auth::user()->role == 'admin')
 <section class="content">
+   <div class="card-body text-center">
+      <h3 >Chào mừng bạn đến với trang quản trị <span class="text-info">WatchShop</span></h3>    
+  </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-6">
@@ -25,7 +27,8 @@
                       @foreach($doanhthu as $value)
                         @php $tongtien += $value->tongsoluongban * $value->dongia; @endphp
                       @endforeach
-                      <sup style="font-size: 20px">{{number_format($tongtien)}}</sup></h3>
+                      {{number_format($tongtien)}}
+                    </h3>
 
                     <p>Doanh thu hôm nay</p>
                     </div>
@@ -105,15 +108,5 @@
     </div>
   </div>
 
-@else
-<section class="content">
-  <div class="card-body text-center">
-    <div class="card-body text-center">
-      <h5 >Chào mừng bạn đến với trang quản trị WatchShop</h5>
-      <img src="{{ asset('public/assets/img/logo/watchshop_logo1.png')}}" >
-    </div>
-    
-  </div>
-</section>
-@endif
+
 @endsection

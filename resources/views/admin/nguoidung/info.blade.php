@@ -3,79 +3,75 @@
 
 @section('content')
 @if (session('status'))
-            <div id="AlertBox" class="alert alert-success hide" role="alert">
-                {!! session('status') !!}
-            </div>
+<div id="AlertBox" class="alert alert-success hide" role="alert">
+    {!! session('status') !!}
+</div>
 @endif
-    <section class="content">
+<section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
-
-            <!-- Profile Image -->
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{ asset('public/admin/dist/img/staff.png')}}"
-                       alt="User profile picture">
+                        src="{{ asset('public/admin/dist/img/staff.png')}}"
+                        alt="User profile picture">
                 </div>
                 <h3 class="profile-username text-center">{{Auth::user()->name}} </h3>
                 <p class="text-muted text-center">{{Auth::user()->role}}</p>
               </div>
-              <!-- /.card-body -->
-            </div>            
+            </div>
           </div>
-          <!-- /.col -->
+
           <div class="col-md-9">
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  @if($baiviet->count() == 0)
+                @if($baiviet->count() == 0)
                     <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Thông tin cá nhân</a></li>
                   @else
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Bài viết của tôi</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Bài viết của tôi</a></li>
                     <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Thông tin cá nhân</a></li>
                   @endif
                 </ul>
-              </div><!-- /.card-header -->
+              </div>
+
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="activity">
                     @foreach($baiviet as $value)
-                    <div class="post">
-                      <h2>{{$value->tieude}}</h2>
-                      <!-- /.user-block -->
-                      <p>
-                        {{$value->tomtat}}
-                      </p>
 
-                      <p>
-                        <i class="fas fa-eye mr-1"></i> Lượt xem ({{$value->luotxem}})
-                        @if(empty($binhluan))
-                          <a  href="{{ route('admin.binhluan', ['tieude_slug' => $value->tieude_slug]) }}"  class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận ( {{ $binhluan->count()}})</a>
-                        @else
-                          <a  href=""  class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận (0)</a>
+                      <div class="post">
+                        <h2>{{$value->tieude}}</h2>
+                          <p>
+                            {{$value->tomtat}}
+                          </p>
 
-                        @endif
-                          <span class="float-right">
-                          <a href="{{ route('admin.baiviet.sua.info', ['id' => $value->id]) }}" class="link-black text-sm" style="text-decoration:none;">
-                            <i class="fas fa-edit text-info"></i> Sửa
-                          </a>
-                          <a href="{{ route('admin.baiviet.xoa.info', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa bài viết {{ $value->tieude}} không?')" style="text-decoration:none;">
-                            <i class="fas fa-trash-alt text-danger"></i> Xóa
-                          </a>
-                        </span>
-                      </p>
+                          <p>
+                            <i class="fas fa-eye mr-1"></i> Lượt xem ({{$value->luotxem}})
+                            @if(empty($binhluan))
+                              <a  href="{{ route('admin.binhluan', ['tieude_slug' => $value->tieude_slug]) }}"  class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận ( {{ $binhluan->count()}})</a>
+                            @else
+                              <a  href=""  class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận (0)</a>
 
-                    </div>
-                    <!-- /.post -->  
+                            @endif
+                              <span class="float-right">
+                              <a href="{{ route('admin.baiviet.sua.info', ['id' => $value->id]) }}" class="link-black text-sm" style="text-decoration:none;">
+                                <i class="fas fa-edit text-info"></i> Sửa
+                              </a>
+                              <a href="{{ route('admin.baiviet.xoa.info', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa bài viết {{ $value->tieude}} không?')" style="text-decoration:none;">
+                                <i class="fas fa-trash-alt text-danger"></i> Xóa
+                              </a>
+                            </span>
+                          </p>
+                      </div>    
+                    @endforeach      
                   </div>
-                  @endforeach
 
                   <div class="tab-pane" id="settings">
                     <form class="form-horizontal" action="{{ route('admin.nguoidung.sua.info', ['id' => Auth::user()->id]) }}" method="post">
-                  @csrf
+                      @csrf
                       <div class="mb-3">
                           <label class="form-label" for="name">Họ và tên</label>
                           <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ Auth::user()->name }}" required />
@@ -124,6 +120,7 @@
         </div>
       </div>
     </section>
+    
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
     $(document).ready(function() {
