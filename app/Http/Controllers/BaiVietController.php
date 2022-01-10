@@ -17,6 +17,12 @@ class BaiVietController extends Controller
     
     public function getDanhSach()
     {        
+        if(auth::user()->role == 'staff')
+        {
+            $baiviet = BaiViet::orderBy('created_at', 'desc')->where('nguoidung_id',auth::user()->id)->get();
+            return view('admin.baiviet.danhsach',compact('baiviet'));
+        }
+
         $baiviet = BaiViet::orderBy('created_at', 'desc')->get();
         return view('admin.baiviet.danhsach',compact('baiviet'));
     }

@@ -21,6 +21,7 @@
                         <th width="7%">Hiển thị </th>
                         <th width="7%">Trạng thái bình luận</th>
                         <th width="7%">Bình luận</th>
+                        <th width="5%">Sửa</th>
                         <th width="5%">Xóa</th>
                     </tr>
                 </thead>
@@ -54,8 +55,9 @@
                             </td>
                             <td class="text-center">    
                                 <a href="{{ route('admin.binhluan', ['tieude_slug' => $value->tieude_slug]) }}"><i class="fas fa-comments"></i></a>
-                            
                             </td>
+                            <td class="text-center"><a href="{{ route('admin.baiviet.sua', ['id' => $value->id]) }}"><i class="fa fa-edit"></i></a></td>                            
+
                             <td class="text-center"><a href="{{ route('admin.baiviet.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa bài viết {{ $value->tieude}} không?')"><i class="fa fa-trash-alt text-danger"></i></a></td>
                         </tr>
                     @endforeach
@@ -70,6 +72,9 @@
                         <th width="15%">Người viết</th>
                         <th width="7%">Lượt xem </th>                      
                         <th width="7%">Bình luận</th>
+                        <th width="5%">Sửa</th>
+                        <th width="5%">Xóa</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -84,6 +89,9 @@
                                 <a href="{{ route('admin.binhluan', ['tieude_slug' => $value->tieude_slug]) }}"><i class="fas fa-comments"></i></a>
                             
                             </td>
+                            <td class="text-center"><a href="{{ route('admin.baiviet.sua', ['id' => $value->id]) }}"><i class="fa fa-edit"></i></a></td>                            
+                            <td class="text-center"><a href="{{ route('admin.baiviet.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa bài viết {{ $value->tieude}} không?')"><i class="fa fa-trash-alt text-danger"></i></a></td>
+
                         </tr>
                     @endforeach
                 </tbody>
