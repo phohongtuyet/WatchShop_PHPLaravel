@@ -76,6 +76,13 @@ class BaiVietController extends Controller
         $orm->tieude_slug = Str::slug($request->tieude, '-');
         $orm->tomtat = $request->tomtat;
         $orm->noidung = $request->noidung;
+        if(Auth::user()->role == 'admin')
+        {
+            $orm->binhluan = 1;
+            $orm->kiemduyet = 1;
+            $orm->hienthi = 1;
+
+        }
         $orm->save();
 
         return redirect()->route('admin.baiviet')->with('status','Thêm mới thành công');
