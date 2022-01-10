@@ -6,7 +6,6 @@ use App\Models\BinhLuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Imports\NguoiDungImport;
 use App\Exports\NguoiDungExport;
 use Excel;
 use Auth;
@@ -21,9 +20,7 @@ class NguoiDungController extends Controller
     // Nhập từ Excel
     public function postNhap(Request $request)
     {
-        Excel::import(new NguoiDungImport, $request->file('file_excel'));
-        
-        return redirect()->route('admin.nguoidung');
+       
     }
     
     // Xuất ra Excel

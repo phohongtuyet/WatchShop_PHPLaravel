@@ -55,6 +55,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:nguoidung'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],
+        $messages = [
+            'name.required' => 'Họ và tên không được bỏ trống',
+            'password.required' => 'Mật khẩu không được bỏ trống.',
+            'email.required' => 'Địa chỉ Email không được bỏ trống.',
+            'email.email' => 'Địa chỉ Email không  hợp lệ.',
+            'password.min' => 'Mật khẩu tối thiểu 8 ký tự.',
+            'email.unique' => 'Địa chỉ Email đã tồn tại.',
         ]);
     }
 

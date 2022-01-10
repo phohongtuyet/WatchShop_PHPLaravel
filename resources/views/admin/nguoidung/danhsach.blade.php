@@ -11,7 +11,6 @@
         <div class="card-body table-responsive">
             <div class="d-flex mb-2 ">
                 <a href="{{ route('admin.nguoidung.them') }}" class="btn btn-info mr-1"><i class="fas fa-plus"></i> Thêm mới</a>
-                <a href="#nhap" class="btn btn-warning mr-1" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fas fa-upload"></i> Nhập từ Excel</a>               
                 
                 <form action="{{ route('admin.nguoidung.xuat') }}" method="post">
                 @csrf
