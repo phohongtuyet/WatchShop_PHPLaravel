@@ -305,7 +305,7 @@ class HomeController extends Controller
 		ob_end_clean();
 		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $strNoiDung, $matches);
 		if(empty($output))
-			return "images/noimage.png";
+			return  env('APP_URL')."/storage/app/image/noimage.jpg";
 		else
 			return $matches[1][0];
 	}
