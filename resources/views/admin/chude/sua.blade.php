@@ -7,8 +7,8 @@
     <form action="{{ route('admin.chude.sua',['id' => $chude -> id]) }}" method="post">
         @csrf
         <div class="mb-3">
-        <label for="tenchude" class="form-label  @error('tenchude') is-invalid @enderror" value="{{ old('tenchude') }}">Tên chất liệu </label>
-            <input type="text" class="form-control" id="tenchude" name="tenchude">
+        <label for="tenchude" class="form-label  @error('tenchude') is-invalid @enderror" value="{{ old('tenchude') }}">Tên chủ đề   </label>
+            <input type="text" class="form-control" id="tenchude" name="tenchude" value="{{ $chude->tenchude }}">
             @error('tenchude')
                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
             @enderror

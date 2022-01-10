@@ -1,4 +1,4 @@
-@extends('layouts.apadminp')
+@extends('layouts.admin')
 @section('title', 'Chất liệu đồng hồ')
 @section('content')
  <div class="card">
@@ -8,7 +8,7 @@
         @csrf
         <div class="mb-3">
         <label for="tenchatlieu" class="form-label  @error('tenchatlieu') is-invalid @enderror" value="{{ old('tenchatlieu') }}">Tên chất liệu </label>
-            <input type="text" class="form-control" id="tenchatlieu" name="tenchatlieu">
+            <input type="text" class="form-control" id="tenchatlieu" name="tenchatlieu" value="{{ $chatlieu ->tenchatlieu }}">
             @error('tenchatlieu')
                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
             @enderror

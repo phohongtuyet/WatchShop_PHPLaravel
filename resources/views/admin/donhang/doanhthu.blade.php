@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <button type="submit" class="btn btn-primary">Thống kê</button>
+                <button type="submit" class="btn btn-primary">Thống kê <i class="fas fa-chart-line"></i></button>
             </div>
         </form>
     </div> 
@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <button type="submit" class="btn btn-primary">Thống kê</button>
+                <button type="submit" class="btn btn-primary">Thống kê <i class="fas fa-chart-line"></i></button>
             </div>
         </form>
     </div> 

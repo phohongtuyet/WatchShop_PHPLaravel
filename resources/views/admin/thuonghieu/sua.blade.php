@@ -2,7 +2,7 @@
 @section('title', 'Thương hiệu đồng hồ')
 @section('content')
  <div class="card">
-    <div class="card-header">Thương hiệu đồng hồ</div>
+    <div class="card-header">Sửa thương hiệu đồng hồ</div>
     <div class="card-body table-responsive">
     <form action="{{ route('admin.thuonghieu.sua',['id' => $thuonghieu -> id]) }}" method="post" enctype="multipart/form-data">
         @csrf

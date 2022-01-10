@@ -11,7 +11,7 @@
         <div class="card-body table-responsive">
             <div class="d-flex mb-2 ">
                 <a href="{{ route('admin.nguoidung.them') }}" class="btn btn-info mr-1"><i class="fas fa-plus"></i> Thêm mới</a>
-                
+                    
                 <form action="{{ route('admin.nguoidung.xuat') }}" method="post">
                 @csrf
                     <select class="form-control" name="select" id="select" onchange="if(this.value != 0) { this.form.submit(); }">
