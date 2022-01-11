@@ -24,6 +24,7 @@
                         <td>
                             <span class="d-block">Điện thoại: <strong>{{ $value->dienthoaigiaohang }}</strong></span>
                             <span class="d-block">Địa chỉ giao: <strong>{{ $value->diachigiaohang }}</strong></span>
+                            <span class="d-block">Ghi chú  : <strong>{{ $value->chitietgiaohang }}</strong></span>
                             <span class="d-block">Sản phẩm:</span>
                             <table class="table table-bordered table-hover table-sm mb-0">
                                 <thead>

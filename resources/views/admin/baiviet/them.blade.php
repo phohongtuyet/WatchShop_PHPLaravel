@@ -43,42 +43,13 @@
 
         <button type="submit" class="btn btn-primary">Thêm vào CSDL</button>
     </form>
-    <script src="https://cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('noidung', {
-			height: 300,
-            baseFloatZIndex: 10005,
-            removeButtons: 'PasteFromWord',
-            displayFoldersPanel: false,
-            toolbarGroups: [{
-                "name": "basicstyles",
-                "groups": ["basicstyles"]
-            },
-            {
-                "name": "links",
-                "groups": ["links"]
-            },
-            {
-                "name": "paragraph",
-                "groups": ["list", "blocks"]
-            },
-            {
-                "name": "document",
-                "groups": ["mode"]
-            },
-            {
-                "name": "insert",
-                "groups": ["insert"]
-            },
-            {
-                "name": "styles",
-                "groups": ["styles"]
-            },
-            
-        ],
-      // Remove the redundant buttons from toolbar groups defined above.
-      removeButtons: 'Strike,Subscript,Superscript,Anchor,Specialchar,PasteFromWord'
-        });
+        ClassicEditor
+        .create( document.querySelector( '#noidung' ) )
+        .catch( error => {
+            console.error( error );
+        } );
     </script>
     </div>
  </div>
