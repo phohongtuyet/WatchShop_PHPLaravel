@@ -4,8 +4,7 @@
         <th width="15">Loại</th>
         <th width="15">Thương hiệu</th>
         <th width="15">Chất liệu</th>
-        <th width="30">Tên sản phẩm</th>
-        <th width="30">Tên sản phẩm không dấu</th>
+        <th width="70">Tên sản phẩm</th>
         <th width="15">Giới tính</th>
         <th width="15">Số lượng </th>
         <th width="15">Đơn giá</th>
@@ -19,7 +18,6 @@
                 <td>{{ $value->thuonghieu_id }}</td>
                 <td>{{ $value->chatlieu_id }}</td>
                 <td>{{ $value->tensanpham }}</td>
-                <td>{{ $value->tensanpham_slug }}</td>
                 <td>{{ $value->gioitinh }}</td>
                 <td>{{ $value->soluong }}</td>
                 <td>{{ $value->dongia }}</td> 
