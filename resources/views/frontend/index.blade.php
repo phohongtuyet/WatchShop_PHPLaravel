@@ -96,6 +96,13 @@
             </div>
         </div>
     </section>
+
+    @if(session('status'))
+        <div id="thongbao" class="alert alert-success hide thongbao" role="alert">
+            <span class="fas fa-check-circle"></span>
+            <span class="msg">{!! session('status') !!}</span>           
+        </div>    
+    @endif
     
     <!-- Latest Products End -->
     <!--? Shop Method Start-->

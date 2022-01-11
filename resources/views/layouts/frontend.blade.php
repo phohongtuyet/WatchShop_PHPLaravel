@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('public/assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/nice-select.css')}}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/thongbao.css')}}">
+
 </head>
 
 <body>
@@ -273,6 +275,15 @@
     <script src="{{ asset('public/assets/js/plugins.js')}}"></script>
     <script src="{{ asset('public/assets/js/main.js')}}"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
 
+        $(document).ready(function() {
+            $('.thongbao').addClass("show");
+           $('.thongbao').addClass("showAlert");
+           $('.thongbao').removeClass('hide');
+            $('.thongbao').delay(2000).slideUp(500);
+        });
+    </script>
 </body>
 </html>

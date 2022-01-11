@@ -350,7 +350,7 @@ class HomeController extends Controller
             ]
         ]);
 
-        return redirect()->route('frontend');
+        return redirect()->route('frontend')->with('status', 'Đã thêm sản phẩm vào giỏ hàng');;
     }
     
     public function getGioHang_ThemChiTiet(Request $request, $tensanpham_slug)

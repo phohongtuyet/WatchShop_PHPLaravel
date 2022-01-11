@@ -57,7 +57,7 @@ class BinhLuanController extends Controller
             'noidung' => ['required'],
         ]);
            
-        $orm = new BaiViet();
+        $orm = new BinhLuan();
         $orm->users_id = Auth::user()->id;
         $orm->tieude = $request->tieude;
         $orm->tieude_slug = Str::slug($request->tieude, '-');
@@ -70,7 +70,7 @@ class BinhLuanController extends Controller
 
     public function getSua($id)
     {
-        $baiviet = BaiViet::find($id);
+        $baiviet = BinhLuan::find($id);
         return view('admin.baiviet.sua', compact('baiviet'));
     }
 
@@ -81,7 +81,7 @@ class BinhLuanController extends Controller
             'noidung' => ['required'],
         ]);
            
-        $orm = BaiViet::find($id);
+        $orm = BinhLuan::find($id);
         $orm->users_id = Auth::user()->id;
         $orm->tieude = $request->tieude;
         $orm->tieude_slug = Str::slug($request->tieude, '-');
@@ -98,9 +98,11 @@ class BinhLuanController extends Controller
 
     public function getXoa($id)
     {
-        $orm = BaiViet::find($id);
+        $orm = BinhLuan::find($id);
         $orm->delete();
-    
-        return redirect()->route('admin.baiviet')->with('status','Xóa thành công');
+
+        $baiviet = BaiViet::find($orm->baiviet_id);
+
+        return redirect()->route('admin.binhluan',$baiviet->tieude_slug)->with('status','Xóa thành công');
     }
 }

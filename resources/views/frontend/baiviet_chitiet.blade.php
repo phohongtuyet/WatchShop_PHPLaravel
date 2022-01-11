@@ -20,7 +20,7 @@
     <section class="blog_area single-post-area section-padding">
         <div class="container">
         @if(session()->has('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success thongbao">
                {{ session()->get('success') }}
             </div>
           @endif
