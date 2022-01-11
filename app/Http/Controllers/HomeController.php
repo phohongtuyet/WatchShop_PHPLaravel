@@ -90,6 +90,20 @@ class HomeController extends Controller
         }    
     }
     
+    public function getSearch(Request $request)
+    {
+          
+        $sanpham = SanPham::select( 'sanpham.*',
+        DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
+        ->where('sanpham.hienthi',1)
+        ->where('sanpham.soluong','>',0)
+        ->where('sanpham.tensanpham','like', '%' . $request->key . '%')
+        ->paginate(9);
+        $session_title = $request->key;
+
+        return view('frontend.thuonghieu', compact('sanpham','session_title'));
+
+    }
     public function getSanPham()
     {
           
@@ -99,7 +113,7 @@ class HomeController extends Controller
         ->where('sanpham.soluong','>',0)
         ->paginate(9);
           
-        return view('frontend.sanpham', compact('sanpham'));
+        return view('frontend.thuonghieu', compact('sanpham'));
 
     }
    

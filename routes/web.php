@@ -64,6 +64,9 @@ Route::post('/binh-luan/{tieude_slug}', [HomeController::class, 'postBinhLuan'])
 // Liên hệ
 Route::get('/lien-he', [HomeController::class, 'getLienHe'])->name('frontend.lienhe');
 
+// Tìm kiếm
+Route::get('/search', [HomeController::class, 'getSearch'])->name('frontend.search');
+
 // Google OAuth
 Route::get('/login/google', [HomeController::class, 'getGoogleLogin'])->name('google.login');
 Route::get('/login/google/callback', [HomeController::class, 'getGoogleCallback'])->name('google.callback');
