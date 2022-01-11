@@ -52,47 +52,18 @@ class BinhLuanController extends Controller
 
     public function postThem(Request $request)
     {
-        $this->validate($request, [
-            'tieude' => ['required','string', 'unique:baiviet'],
-            'noidung' => ['required'],
-        ]);
-           
-        $orm = new BinhLuan();
-        $orm->users_id = Auth::user()->id;
-        $orm->tieude = $request->tieude;
-        $orm->tieude_slug = Str::slug($request->tieude, '-');
-        $orm->tomta = $request->tomta;
-        $orm->noidung = $request->noidung;
-        $orm->save();
+        
 
-        return redirect()->route('admin.baiviet');
     }
 
     public function getSua($id)
     {
-        $baiviet = BinhLuan::find($id);
-        return view('admin.baiviet.sua', compact('baiviet'));
+       
     }
 
     public function postSua(Request $request, $id)
     {
-        $this->validate($request, [
-            'tieude' => ['required', 'string', 'unique:baiviet,tieude,'.$id],
-            'noidung' => ['required'],
-        ]);
-           
-        $orm = BinhLuan::find($id);
-        $orm->users_id = Auth::user()->id;
-        $orm->tieude = $request->tieude;
-        $orm->tieude_slug = Str::slug($request->tieude, '-');
-        $orm->tomta = $request->tomta;
-        $orm->noidung = $request->noidung;
-        $orm->LuotXem = $orm->LuotXem;
-        $orm->kiemduyet = $orm->kiemduyet;
-        $orm->hienthi = $orm->hienthi;
-        $orm->save();
-
-        return redirect()->route('admin.baiviet');
+        
 
     }
 

@@ -15,7 +15,6 @@
                     <th width="30%">Nội dung</th>
                     <th width="15%">Người bình luận</th>
                     <th width="7%">Hiển thị </th>   
-                    <th width="5%">Sửa</th>
                     <th width="5%">Xóa</th>
                 </tr>
             </thead>
@@ -31,7 +30,7 @@
                             @else
                                 <a href="{{ route('admin.binhluan.OnOffDuyet', ['id' => $value->id]) }}"><i class="fas fa-ban"></i></a>           
                             @endif
-                        </td>                        <td class="text-center"><a href="{{ route('admin.binhluan.sua', ['id' => $value->id]) }}"><i class="fa fa-edit"></i></a></td>
+                        </td>                        
                         <td class="text-center"><a href="{{ route('admin.binhluan.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa bình luận {{ $value->noidung}} không?')"><i class="fa fa-trash-alt text-danger"></i></a></td>
                     </tr>
                 @endforeach

@@ -299,6 +299,13 @@ class HomeController extends Controller
 
     public function postBinhLuan(Request $request, $tieude_slug)
     {
+        $this->validate($request, [
+            'noidung' => ['required','string'],
+        ],
+        $messages = [
+            'noidung.required' => 'Nội dung bình luận không được bỏ trống.',
+        ]);
+        
         $baiviet = BaiViet::where('tieude_slug', $tieude_slug)->first();
         $binhluan = BinhLuan::where('baiviet_id', $baiviet->id)->where('hienthi', 1)->get();
 

@@ -52,7 +52,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="assets/img/comment/comment_1.png" alt="">
+                                    <strong>{{$value->NguoiDung->name}}</strong>
                                 </div>
                                 <div class="desc">
                                     <p class="comment">
@@ -63,7 +63,7 @@
                                             <h5>
                                                 <a href="#">{{$value->created}}</a>
                                             </h5>
-                                            <p class="date">{{$value->created_at}} </p>
+                                            <p class="date">{{$value->created_at->format('d/m/Y H:i:s')}} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -80,10 +80,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control w-100" name="noidung" id="noidung" cols="30" rows="9"
+                                    <textarea  class="form-control w-100 @error('noidung') is-invalid @enderror" name="noidung" id="noidung" cols="30" rows="9"
                                     placeholder="Nội dung "></textarea>
                                 </div>
+                                @error('noidung')
+                                    <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                @enderror
                             </div> 
+                           
                         </div>
                         @if(Auth::user() == null)
                             <div class="form-group">
