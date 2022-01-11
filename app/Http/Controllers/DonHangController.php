@@ -34,7 +34,7 @@ class DonHangController extends Controller
 
     public function getDanhSachDonHangMoi()
     {
-        $donhang = DonHang::where('tinhtrang_id', '1')->get();
+        $donhang = DonHang::where('tinhtrang_id', '1')->orderBy('created_at', 'desc')->get();
         return view('admin.donhang.moi', compact('donhang'));
     }
     

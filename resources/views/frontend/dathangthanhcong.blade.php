@@ -43,7 +43,7 @@
                       <tr>
                         <th colspan="2"><span>{{ $value->name }}</span></th>
                         <th>x {{$value->qty}}</th>
-                        <th> <span>{{$value->price}}</span></th>
+                        <th> <span>{{number_format($value->price)}}</span></th>
                       </tr>
                     @endforeach
                     <tr>
