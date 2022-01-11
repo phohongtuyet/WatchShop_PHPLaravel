@@ -68,7 +68,7 @@
                                         @elseif($value->tinhtrang_id === 3)
                                             <a href=""class="genric-btn btn btn-danger disabled radius" >Đã hủy</a>
                                         @else
-                                            <a href="{{ route('khachhang.donhang.huy',['id' => $value->id])}}" class="genric-btn disable radius">Hủy</a>
+                                            <a href="{{ route('khachhang.donhang.huy',['id' => $value->id])}}" class="genric-btn btn btn-info disabled radius">Thành công</a>
                                         @endif
 
                                     </th>
