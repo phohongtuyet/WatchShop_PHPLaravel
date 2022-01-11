@@ -38,6 +38,14 @@ class CreateUsersTable extends Migration
 			'password' => '$2y$10$OZ5YFT7m2IQBEmQyf9B5K.yUER247wUgDi9t0mfnljdDie2Do.GuC', // 123456789
 			'role' => 'admin',
 		]);
+        NguoiDung::create([
+			'name' => 'User',
+			'username' => 'user',
+			'email' => 'user@gmail.com',
+            'email_verified_at' => Carbon::now(),
+			'password' => '$2y$10$OZ5YFT7m2IQBEmQyf9B5K.yUER247wUgDi9t0mfnljdDie2Do.GuC', // 123456789
+			'role' => 'staff',
+		]);
     }
 
     /**
