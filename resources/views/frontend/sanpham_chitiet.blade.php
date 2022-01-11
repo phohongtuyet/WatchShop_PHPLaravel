@@ -33,7 +33,7 @@
                     <div class="single_product_text text-center">
                         <h3>{{$sanpham->tensanpham}}</h3>
                         <p>
-                        {{$sanpham->motasanpham}}                 
+                        {!!$sanpham->motasanpham!!}                 
                         </p>
                         <div class="card_area">
                             <form method="get" action="{{ route('frontend.giohang.them.chitiet',['tensanpham_slug' => $sanpham->tensanpham_slug]) }}">
@@ -70,11 +70,11 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="subscribe_part_content">
-                        <h2>Get promotions & updates!</h2>
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
+                        <h2>Nhận khuyến mãi và cập nhật!</h2>
+                        <p>Trao quyền liền mạch cho các chiến lược tăng trưởng được nghiên cứu đầy đủ và các nguồn nội bộ có thể tương tác hoặc “hữu cơ” đổi mới nội bộ chi tiết một cách đáng tin cậy.</p>
                         <div class="subscribe_form">
-                            <input type="email" placeholder="Enter your mail">
-                            <a href="#" class="btn_1">Subscribe</a>
+                            <input type="email" placeholder="Địa chỉ Email của bạn">
+                            <a href="#" class="btn_1">Gửi</a>
                         </div>
                     </div>
                 </div>

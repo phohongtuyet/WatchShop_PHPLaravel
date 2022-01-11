@@ -95,4 +95,13 @@
             </form>
         </div>
     </div>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+    .create( document.querySelector( '#motasanpham' ) )
+    .catch( error => {
+        console.error( error );
+    } );
+</script>
 @endsection
