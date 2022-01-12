@@ -73,7 +73,7 @@
                                         <ul class="submenu" style="width: 200px;">
                                            
                                             @foreach($loai as $value)
-                                                <li><a href="{{route('frontend.sanpham.nu',[$value->tenloai_slug])}}">{{$value->tenloai}}</a></li>         
+                                                <li><a href="{{route('frontend.sanpham.capdoi',[$value->tenloai_slug])}}">{{$value->tenloai}}</a></li>         
                                             @endforeach
                                         </ul>
                                     </li>
@@ -81,7 +81,7 @@
                                         <ul class="submenu" style="width: 200px;">
                                            
                                             @foreach($loai as $value)
-                                                <li><a href="{{route('frontend.sanpham.nu',[$value->tenloai_slug])}}">{{$value->tenloai}}</a></li>         
+                                                <li><a href="{{route('frontend.sanpham.treem',[$value->tenloai_slug])}}">{{$value->tenloai}}</a></li>         
                                             @endforeach
                                         </ul>
                                     </li>
