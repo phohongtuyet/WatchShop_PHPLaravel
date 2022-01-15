@@ -24,7 +24,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('role', 20)->default('user'); // Quyền hạn: admin, user
+            $table->unsignedTinyInteger('khoa')->default(0);
+            $table->string('role')->default('user');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrentOnUpdate();
             $table->engine = 'InnoDB';
@@ -36,7 +37,8 @@ class CreateUsersTable extends Migration
 			'email' => 'watchshopphp@gmail.com',
             'email_verified_at' => Carbon::now(),
 			'password' => '$2y$10$OZ5YFT7m2IQBEmQyf9B5K.yUER247wUgDi9t0mfnljdDie2Do.GuC', // 123456789
-			'role' => 'admin',
+            'khoa' => 0,
+            'role' => 'admin',
 		]);
         NguoiDung::create([
 			'name' => 'User',

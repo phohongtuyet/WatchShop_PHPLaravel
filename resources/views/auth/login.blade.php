@@ -7,10 +7,10 @@
                     <div class="card-header">Đăng nhập</div>
                     <div class="card-body">
                             @if(session('warning'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 <span class="font-weight-bold text-danger">
-                                    <i class="fal fa-exclamation-triangle"></i> {{ session('warning') }}
+                                    <i class="fas fa-exclamation-triangle"></i> {{ session('warning') }}
                                 </span>
                             </div>
                             @endif

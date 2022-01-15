@@ -21,7 +21,7 @@ class AdminController extends Controller
     
     public function getHome()
     {
-        if(Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+        if(Auth::user()->role == 'admin' || Auth::user()->role == 'staff' && Auth::user()->khoa ===0  )
         {
             $donhang = DonHang::where('tinhtrang_id',1)->get();
             $user = NguoiDung::all();
@@ -41,7 +41,12 @@ class AdminController extends Controller
 
             $binhluan = BinhLuan::all();
             return view('admin.index',compact('donhang','user','sanpham','doanhthu','binhluan'));
-        }       
+        } 
+        elseif(Auth::user()->khoa === 1)
+        {
+            Auth::logout();
+            return redirect()->route('login')->with('warning', 'Tài khoản của bạn đã bị tạm khóa. Vui lòng liên hệ quản trị viên');
+        }      
         else
             return view('errors.404');
 
